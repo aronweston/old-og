@@ -1,4 +1,5 @@
 import React from 'react';
+import './src/assets/css/tailwind.css';
 import { ProductContextProvider } from './src/context/ProductContext';
 import { CartContextProvider } from './src/context/CartContext';
 import { GlobalStyle } from './src/components/globalStyles';

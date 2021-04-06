@@ -1,16 +1,51 @@
-import { createGlobalStyle } from "styled-components"
-import reset from "styled-reset"
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
+
+  :root {
+    --primary: #203631;
+    --secondary: #f49393;
+    --bkg: #f5f5f5;
+    --font-primary: "Abril Fatface", serif;
+    --font-secondary: "Abril Display", serif;
+    --paragraph-font: "Laca text", sans-serif;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  h3,
+  h4 {
+    font-family: var(--font-secondary);
+  }
+
+  body {
+    font-family: var(--paragraph-font)
+  }
+
+  .icon {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .icon:hover {
+    transform: translate(0px, -5px);
+  }
+
+  .header-space {
+    margin-top: 76px;
+  }
+
   select{
     height: 40px;
     font-size: 16px;
   }
-  body{
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.2;
-  }
+
   strong{
     font-weight: bold;
   }
@@ -41,4 +76,4 @@ export const GlobalStyle = createGlobalStyle`
       list-style: disc;
     }
   }
-`
+`;

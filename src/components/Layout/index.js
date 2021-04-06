@@ -1,14 +1,32 @@
 import React from 'react';
-import { LayoutWrapper } from './styles';
+import Header from '../Header';
+import Footer from '../Footer';
+import { StaticQuery } from 'gatsby';
+import { SiteWrapper, Main } from './styles';
 
-const Layout = ({ children }) => {
+const Layout = ({ location, children }) => {
   return (
-    <>
-      <LayoutWrapper>
-        <main>{children}</main>
-      </LayoutWrapper>
-    </>
+    <StaticQuery
+      query={graphql`
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+            }
+          }
+        }
+      `}
+      render={data => (
+        <SiteWrapper>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Main homePage={location.pathname === '/' ? true : false}>
+            {children}
+          </Main>
+          <Footer />
+        </SiteWrapper>
+      )}
+    />
   );
 };
 
-export { Layout };
+export default Layout;
