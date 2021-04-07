@@ -43,7 +43,7 @@ const Category = ({ data }) => {
       <h1>{category.title}</h1>
       <Grid>
         {category.products?.map(product => (
-          <Link to={product.handle}>
+          <Link key={product.id} to={product.handle}>
             <Image fluid={product.images[0].localFile.childImageSharp.fluid} />
             <span>{product.title}</span>
             <span>{product.description}</span>

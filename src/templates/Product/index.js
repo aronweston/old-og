@@ -1,8 +1,19 @@
+/* eslint-disable jsx-a11y/no-onchange */
+
 import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
-import { SEO, ImageGallery } from 'components';
+import { SEO, ImageGallery, Quantity } from 'components';
 import CartContext from 'context/CartContext';
-import { Heading, Grid, Description } from './styles';
+import {
+  Heading,
+  Grid,
+  Description,
+  Breadcrumb,
+  SelectWrapper,
+  Price,
+} from './styles';
+import { navigate, useLocation } from '@reach/router';
+import queryString from 'query-string';
 
 export const query = graphql`
   query ProductQuery($shopifyId: String, $handle: String) {
@@ -29,42 +40,86 @@ export const query = graphql`
   }
 `;
 
-const Product = ({ data, location }) => {
+const Product = ({ data }) => {
   const { getProductById } = useContext(CartContext);
   const staticProduct = data.shopifyProduct;
-  const staticCollection = data.shopifyCollection;
+  const collection = data.shopifyCollection;
   const [dynamicProduct, setDynamicProduct] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const { search, origin, pathname } = useLocation();
+  const variantId = queryString.parse(search).variant;
 
   useEffect(() => {
     getProductById(staticProduct.shopifyId).then(res => {
       setDynamicProduct(res);
+      //get the first variant selected when the component renders; search the variants and find the one that matches the selected variant
+      setSelectedVariant(
+        res.variants.find(({ id }) => id === variantId) || res.variants[0]
+      );
     });
-  }, [getProductById, setDynamicProduct]);
+  }, [getProductById, setDynamicProduct, staticProduct.shopifyId, variantId]);
+
+  const handleChange = e => {
+    const newVariant = dynamicProduct?.variants.find(
+      v => v.id === e.target.value
+    );
+    setSelectedVariant(newVariant);
+    navigate(
+      `${origin}${pathname}?variant=${encodeURIComponent(newVariant.id)}`,
+      { replace: true }
+    );
+  };
 
   return (
     <>
       <SEO title={`${staticProduct.title} | Olive & Grain Delicatessen`} />
       <Grid>
         <div>
-          <a href="/deli">The Deli / </a>
-          <a href={`/${staticCollection.handle}`}>
-            {staticCollection.title} /{' '}
-          </a>
-          <a href={location.pathname}>{staticProduct.title}</a>
+          <Breadcrumb href="/deli">The Deli / </Breadcrumb>
+          <Breadcrumb href={`/deli/${collection.handle}`}>
+            {collection.title} /
+          </Breadcrumb>
+          <Breadcrumb active href={pathname + search}>
+            {' '}
+            {staticProduct.title}
+            {dynamicProduct?.variants.length > 1 &&
+              ' - ' + selectedVariant?.title}
+          </Breadcrumb>
+
           <Heading>{staticProduct.title}</Heading>
-          <p>{staticCollection.title}</p>
-          <Description>{staticProduct.description}</Description>
-          {dynamicProduct?.variants.map(product => (
+          <p>{collection.title}</p>
+          <p>{staticProduct.description}</p>
+          {dynamicProduct?.availableForSale && (
             <>
-              <span>
-                ${product.price} / {product.weight}
-              </span>
+              {dynamicProduct?.variants.length > 1 && (
+                <SelectWrapper>
+                  <strong>{dynamicProduct.options[0].name}</strong>
+                  <select value={selectedVariant?.id} onChange={handleChange}>
+                    {dynamicProduct?.variants.map(v => (
+                      <option key={v.id} value={v.id}>
+                        {v.title}
+                      </option>
+                    ))}
+                  </select>
+                </SelectWrapper>
+              )}
+              {!!selectedVariant && (
+                <>
+                  <Price>${selectedVariant?.price}</Price>
+                  <Quantity
+                    variantId={selectedVariant.id}
+                    available={selectedVariant.available}
+                  />
+                </>
+              )}
             </>
-          ))}
-          {dynamicProduct?.availableForSale && <h1>Out of stock</h1>}
+          )}
         </div>
         <div>
-          <ImageGallery images={staticProduct.images} />
+          <ImageGallery
+            selectedVariantImageId={selectedVariant?.image.id}
+            images={staticProduct.images}
+          />
         </div>
       </Grid>
     </>

@@ -1,7 +1,15 @@
 import React, { useContext } from 'react';
-// import StoreContext from '~/context/StoreContext';
+import {
+  CartHeader,
+  CloseBar,
+  Cross,
+  EmptyCart,
+  EmptyCartIcon,
+  MiniCartContainer,
+  Title,
+} from './styles';
 
-const MiniCart = ({ visible, qty, crossClick }) => {
+export const MiniCart = ({ visible, crossClick }) => {
   //   const {
   //     store: { checkout },
   //   } = useContext(StoreContext);
@@ -18,7 +26,7 @@ const MiniCart = ({ visible, qty, crossClick }) => {
           <Cross onClick={crossClick}>×</Cross>
         </CloseBar>
       </CartHeader>
-      {checkout.lineItems.length > 0 ? (
+      {/* {checkout.lineItems.length > 0 ? (
         <FullCart>
           <CartContents>
             {checkout.lineItems &&
@@ -43,18 +51,16 @@ const MiniCart = ({ visible, qty, crossClick }) => {
             </Button>
           </CheckOutBlock>
         </FullCart>
-      ) : (
-        <EmptyCart>
-          <span>Cart is empty!</span>
-          <EmptyCartIcon />
-          <p>
-            View all of our amazing platters, cakes, quiches and more through
-            our online deli!
-          </p>
-        </EmptyCart>
-      )}
+      ) : ( */}
+      <EmptyCart>
+        <span>Cart is empty!</span>
+        <EmptyCartIcon />
+        <p>
+          View all of our amazing platters, cakes, quiches and more through our
+          online deli!
+        </p>
+      </EmptyCart>
+      {/* )} */}
     </MiniCartContainer>
   );
 };
-
-export default MiniCart;
