@@ -16,6 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             handle
+            title
             shopifyId
             products {
               handle
@@ -35,6 +36,8 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/Category/index.js`),
         context: {
           handle: node.handle,
+          isCollection: true,
+          collectionTitle: node.title,
         },
       });
 
@@ -45,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/Product/index.js`),
           context: {
             shopifyId: product.shopifyId,
-            productHandle: product.handle,
+            productTitle: product.title,
             collectionHandle: node.handle,
           },
         });

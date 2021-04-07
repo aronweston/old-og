@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-optional-chaining`,
+    `gatsby-plugin-image`,
     {
       resolve: 'gatsby-source-shopify',
       options: {
@@ -33,13 +34,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-shopify-starter`,
-        short_name: `starter`,
+        name: `Olive & Grain Delicatessen Maroubra Sydney`,
+        short_name: `Olive & Grain`,
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: `#f5f5f5`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/assets/favicons/favicon-32x32.png`,
       },
     },
     {

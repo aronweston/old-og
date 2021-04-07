@@ -14,7 +14,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <div className="mx-auto text-xs text-center m">
+        <div className="mx-auto text-xs text-center">
           Copyright © {new Date().getFullYear()}{' '}
           <a href="https://oliveandgrain.com">
             Olive Grain, All rights reserved.

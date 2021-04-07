@@ -1,8 +1,13 @@
 import styled from 'styled-components';
-import tw from 'twin.macro';
-export const SiteWrapper = tw.div`flex flex-col justify-between`;
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
+`;
+
 export const Main = styled.main`
-  width: 100%;
-  overflow: hidden;
+  flex: 1;
   margin-top: ${props => (props.homePage ? '0px' : '76px')};
 `;

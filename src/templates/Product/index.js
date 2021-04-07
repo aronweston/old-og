@@ -6,32 +6,20 @@ import { SEO, ImageGallery, Quantity } from 'components';
 import CartContext from 'context/CartContext';
 import {
   Heading,
-  Grid,
   Description,
   Breadcrumb,
+  Grid,
   SelectWrapper,
   Price,
 } from './styles';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
+import { Container } from '../../components/Global/styles';
 
 export const query = graphql`
   query ProductQuery($shopifyId: String, $handle: String) {
     shopifyProduct(shopifyId: { eq: $shopifyId }) {
-      title
-      handle
-      shopifyId
-      description
-      images {
-        id
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 910) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
+      ...ShopifyProductFields
     }
     shopifyCollection(products: { elemMatch: { handle: { eq: $handle } } }) {
       handle
@@ -69,59 +57,65 @@ const Product = ({ data }) => {
       { replace: true }
     );
   };
+  console.log(staticProduct);
 
   return (
     <>
-      <SEO title={`${staticProduct.title} | Olive & Grain Delicatessen`} />
-      <Grid>
-        <div>
-          <Breadcrumb href="/deli">The Deli / </Breadcrumb>
-          <Breadcrumb href={`/deli/${collection.handle}`}>
-            {collection.title} /
-          </Breadcrumb>
-          <Breadcrumb active href={pathname + search}>
-            {' '}
-            {staticProduct.title}
-            {dynamicProduct?.variants.length > 1 &&
-              ' - ' + selectedVariant?.title}
-          </Breadcrumb>
-
-          <Heading>{staticProduct.title}</Heading>
-          <p>{collection.title}</p>
-          <p>{staticProduct.description}</p>
-          {dynamicProduct?.availableForSale && (
-            <>
-              {dynamicProduct?.variants.length > 1 && (
-                <SelectWrapper>
-                  <strong>{dynamicProduct.options[0].name}</strong>
-                  <select value={selectedVariant?.id} onChange={handleChange}>
-                    {dynamicProduct?.variants.map(v => (
-                      <option key={v.id} value={v.id}>
-                        {v.title}
-                      </option>
-                    ))}
-                  </select>
-                </SelectWrapper>
-              )}
-              {!!selectedVariant && (
-                <>
-                  <Price>${selectedVariant?.price}</Price>
-                  <Quantity
-                    variantId={selectedVariant.id}
-                    available={selectedVariant.available}
-                  />
-                </>
-              )}
-            </>
-          )}
-        </div>
-        <div>
-          <ImageGallery
-            selectedVariantImageId={selectedVariant?.image.id}
-            images={staticProduct.images}
-          />
-        </div>
-      </Grid>
+      <SEO
+        title={`${staticProduct.title} | Olive & Grain Delicatessen`}
+        description={staticProduct.description}
+        keywords={staticProduct.tags}
+      />
+      <Container>
+        <Grid>
+          <div>
+            <Breadcrumb href="/deli">The Deli / </Breadcrumb>
+            <Breadcrumb href={`/deli/${collection.handle}`}>
+              {collection.title} /
+            </Breadcrumb>
+            <Breadcrumb active href={pathname + search}>
+              {' '}
+              {staticProduct.title}
+              {dynamicProduct?.variants.length > 1 &&
+                ' - ' + selectedVariant?.title}
+            </Breadcrumb>
+            <Heading>{staticProduct.title}</Heading>
+            <p>{collection.title}</p>
+            <p>{staticProduct.description}</p>
+            {dynamicProduct?.availableForSale && (
+              <>
+                {dynamicProduct?.variants.length > 1 && (
+                  <SelectWrapper>
+                    <strong>{dynamicProduct.options[0].name}</strong>
+                    <select value={selectedVariant?.id} onChange={handleChange}>
+                      {dynamicProduct?.variants.map(v => (
+                        <option key={v.id} value={v.id}>
+                          {v.title}
+                        </option>
+                      ))}
+                    </select>
+                  </SelectWrapper>
+                )}
+                {!!selectedVariant && (
+                  <>
+                    <Price>${selectedVariant?.price}</Price>
+                    <Quantity
+                      variantId={selectedVariant.id}
+                      available={selectedVariant.available}
+                    />
+                  </>
+                )}
+              </>
+            )}
+          </div>
+          <div>
+            <ImageGallery
+              selectedVariantImageId={selectedVariant?.image.id}
+              images={staticProduct.images}
+            />
+          </div>
+        </Grid>
+      </Container>
     </>
   );
 };

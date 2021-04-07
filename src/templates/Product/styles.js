@@ -8,10 +8,10 @@ export const Description = styled.p`
 `;
 
 export const Grid = styled.section`
-  ${tw`container mx-auto mt-2`};
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
+  margin-top: 20px;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;

@@ -1,31 +1,16 @@
 import React from 'react';
 import Image from 'gatsby-image';
 import { Link } from 'gatsby';
-// import SEO from '~/components/seo';
-import { Grid } from './styles';
+import { Grid, ProductContainer, BgImage } from './styles';
+import { Container } from '../../components/Global/styles';
+import { SEO } from 'components';
 
 export const query = graphql`
   query CollectionQuery($handle: String) {
     shopifyCollection(handle: { eq: $handle }) {
-      handle
-      title
-      shopifyId
-      description
+      ...ShopifyCollectionFields
       products {
-        handle
-        title
-        shopifyId
-        description
-        images {
-          id
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 910) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
+        ...ShopifyProductFields
         variants {
           price
         }
@@ -36,21 +21,35 @@ export const query = graphql`
 
 const Category = ({ data }) => {
   const category = data.shopifyCollection;
-  console.log(category);
   return (
     <>
-      {/* <SEO title={product.title} description={product.description} /> */}
-      <h1>{category.title}</h1>
-      <Grid>
-        {category.products?.map(product => (
-          <Link key={product.id} to={product.handle}>
-            <Image fluid={product.images[0].localFile.childImageSharp.fluid} />
-            <span>{product.title}</span>
-            <span>{product.description}</span>
-            <span>{product.variants[0].price}</span>
-          </Link>
-        ))}
-      </Grid>
+      <SEO title={category.title} description={category.description} />
+      <Container>
+        <BgImage
+          title={category.title}
+          fluid={category.image?.localFile.childImageSharp.fluid}
+          overlayColor="#04040454"
+          height="300px"
+        >
+          <h1>{category.title}</h1>
+          <p>{category.description}</p>
+        </BgImage>
+        <Grid>
+          {category.products?.map(product => (
+            <ProductContainer key={product.shopifyId}>
+              <Link to={product.handle}>
+                <Image
+                  fluid={product.images[0].localFile?.childImageSharp.fluid}
+                  alt={product.title}
+                />
+                <p>{product.title}</p>
+                <span>{product.description}</span>
+                <span>{product.variants[0].price}</span>
+              </Link>
+            </ProductContainer>
+          ))}
+        </Grid>
+      </Container>
     </>
   );
 };
