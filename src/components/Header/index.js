@@ -3,17 +3,17 @@ import {
   Header as HeaderWrapper,
   Menu as MenuIcon,
   Container,
-  Icon,
-  NavLink,
-  HeaderLogo,
+  MobileLogo,
   Phone,
+  SearchIcon,
   IconContainer,
 } from './styles';
-import { MiniCart, Cart, Menu } from 'components';
+import { MiniCart, Cart, Menu, Search } from 'components';
 
 const Header = () => {
   const [cartVisible, setCartVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
 
   const showCart = () => {
     !cartVisible ? setCartVisible(true) : setCartVisible(false);
@@ -23,23 +23,19 @@ const Header = () => {
     !menuVisible ? setMenuVisible(true) : setMenuVisible(false);
   };
 
+  const showSearch = () => {
+    !searchVisible ? setSearchVisible(true) : setSearchVisible(false);
+  };
+
   return (
     <>
-      <HeaderWrapper>
+      <HeaderWrapper search={searchVisible ? true : null}>
         <Container>
-          <Icon onClick={showMenu}>
-            <MenuIcon width="25px" fill="#000" />
-          </Icon>
-
-          <NavLink to="/">
-            <HeaderLogo width="auto" />
-          </NavLink>
-
+          <MobileLogo />
           <IconContainer>
-            <NavLink to="tel:0422611910">
-              <Phone width="25px" />
-            </NavLink>
-
+            <Phone />
+            <MenuIcon onClick={showMenu} />
+            <SearchIcon onClick={showSearch} />
             <Cart onClick={showCart} />
           </IconContainer>
         </Container>
@@ -51,6 +47,11 @@ const Header = () => {
       />
 
       <Menu visible={menuVisible} crossClick={() => setMenuVisible(false)} />
+
+      <Search
+        visible={searchVisible}
+        crossClick={() => setSearchVisible(false)}
+      />
     </>
   );
 };

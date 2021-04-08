@@ -45,10 +45,9 @@ export const Menu = ({ visible, crossClick }) => {
           <li>
             <NavLink to="/cart">Cart</NavLink>
           </li>
-
           {allSitePage.edges.map(collection =>
             collection.node.context.isCollection === true ? (
-              <li>
+              <li key={collection.title}>
                 <NavLink to={collection.node.path}>
                   {collection.node.context.collectionTitle}
                 </NavLink>

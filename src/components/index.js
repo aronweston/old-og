@@ -9,3 +9,4 @@ export * from './Quantity/QuantityAdjuster';
 export * from './Hero';
 export * from './Global';
 export * from './Menu';
+export * from './Search';

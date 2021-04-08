@@ -1,63 +1,147 @@
 import tw from 'twin.macro';
 import styled from 'styled-components';
 import EmptyCartIcon from '../../../assets/svg/empty-leaf.svg';
-
+import { Button as ButtonBase } from '../../Global';
 export { EmptyCartIcon };
 
-export const ButtonBase = styled.button`
-  display: inline-block;
-  border-radius: 4px;
-  background-color: ${props =>
-    props.primary
-      ? 'var(--primary)'
-      : props.secondary
-      ? 'var(--secondary)'
-      : 'transparent'};
-  border: ${props =>
-    props.secondary
-      ? '1px var(--secondary) solid'
-      : '1.5px var(--primary) solid'};
-  color: ${props =>
-    props.primary || props.secondary ? '#fff' : 'var(--primary)'};
-  text-align: center;
-  font-size: 18px;
-  font-family: var(--font-secondary);
-  font-style: italic;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  margin-top: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: 0.3s ease;
+export const CartContainer = styled.div`
+  overflow: auto;
+  height: calc(100% - 253px);
+`;
 
-  &:hover {
-    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.14);
-    transform: translate(0%, -7%);
+export const CartItem = styled.div`
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  //Desktop
+  @media screen and (min-width: 1024px) {
+    padding: 15px 0px;
+  }
+
+  > img {
+    width: 100%;
+    ${tw`rounded`}
+    @media screen and (min-width: 768px) {
+      width: 90%;
+      margin-right: auto;
+    }
+  }
+
+  > div {
+    > p:first-child {
+      font-size: 20px;
+      font-family: 'Abril Fatface';
+      font-weight: bold;
+    }
+
+    > p:last-child {
+      font-size: 17px;
+      margin: 10px 0;
+      font-family: 'Abril Fatface';
+      font-weight: bold;
+    }
   }
 `;
+
+export const ButtonBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 15px;
+  position: absolute;
+  bottom: 0;
+
+  > div {
+    display: inline-flex;
+    justify-content: space-between;
+    font-size: 18px;
+  }
+
+  // Tablet
+  @media screen and (min-width: 768px) {
+    width: 85%;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  //Desktop
+  @media screen and (min-width: 1024px) {
+    width: 100%;
+  }
+`;
+
 export const Button = styled(ButtonBase)`
   margin-top: 5px;
+  margin-right: 0;
+  padding: 0.8rem 2rem;
   &:hover {
     transform: none;
   }
 `;
 
-export const CartHeader = tw.div`flex justify-between items-center`;
-
-export const SubTotal = tw.p``;
-export const Cross = tw.span``;
-export const Item = tw.div`mt-2 flex justify-between`;
-export const Image = tw.img`w-4/12`;
-export const Qty = tw.p`text-black`;
-export const Title = tw.p`text-black`;
-export const Info = tw.div`w-8/12`;
-export const FullCart = styled.div`
-  overflow-y: auto;
-  overflow-x: hidden;
+export const MiniCartContainer = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  opacity: ${props => (props.visible ? '1' : '0')};
+  z-index: 9000;
+  height: 100vh;
+  width: 350px;
+  background-color: var(--bkg);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
+  transform: ${props =>
+    props.visible ? 'translateX(0%)' : 'translateX(100%)'};
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
-export const EmptyCart = tw.div`flex items-center flex-col text-center h-full justify-center w-full`;
-export const CartContents = tw.div`p-1 mx-auto m-4`;
-export const CheckOutBlock = tw.div`absolute bottom-0 m-4 w-full`;
+
+export const CartHeader = styled.div`flex justify-between items-center`;
+export const EmptyCart = styled.div`
+  height: 70vh;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  > span {
+    font-size: 35px;
+    font-family: 'Abril Fatface';
+    color: white;
+    padding-top: 25px;
+  }
+
+  > p {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 300;
+    width: 70%;
+  }
+
+  @media (min-width: 768px) {
+    > p {
+      width: 30%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    > p {
+      width: 60%;
+    }
+  }
+`;
 
 export const CloseBar = styled.div`
   padding: 25px;
@@ -75,27 +159,5 @@ export const CloseBar = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 15px;
-  }
-`;
-
-export const MiniCartContainer = styled.div`
-  position: fixed;
-  text-align: left;
-  right: 0;
-  line-height: 1.4;
-  top: 0;
-  opacity: ${props => (props.visible ? '1' : '0')};
-  z-index: 9000;
-  height: 100vh;
-  width: 350px;
-  background-color: var(--secondary);
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
-  transform: ${props =>
-    props.visible ? 'translateX(0%)' : 'translateX(100%)'};
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
   }
 `;

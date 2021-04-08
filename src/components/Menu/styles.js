@@ -78,4 +78,4 @@ export const CloseBar = styled.div`
   }
 `;
 
-export const CartHeader = tw.div`flex justify-between items-center`;
+export const CartHeader = styled.div`flex justify-between items-center`;
