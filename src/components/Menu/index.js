@@ -1,5 +1,4 @@
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import React, { useContext } from 'react';
 import {
   CartHeader,
   CloseBar,
@@ -7,25 +6,10 @@ import {
   Overlay,
   OverlayContent,
 } from './styles';
-
-export const query = graphql`
-  {
-    allSitePage {
-      edges {
-        node {
-          context {
-            isCollection
-            collectionTitle
-          }
-          path
-        }
-      }
-    }
-  }
-`;
+import ProductContext from 'context/ProductContext';
 
 export const Menu = ({ visible, crossClick }) => {
-  const { allSitePage } = useStaticQuery(query);
+  const { collections } = useContext(ProductContext);
   return (
     <Overlay visible={visible ? true : null}>
       <CartHeader>
@@ -45,15 +29,13 @@ export const Menu = ({ visible, crossClick }) => {
           <li>
             <NavLink to="/cart">Cart</NavLink>
           </li>
-          {allSitePage.edges.map(collection =>
-            collection.node.context.isCollection === true ? (
-              <li key={collection.title}>
-                <NavLink to={collection.node.path}>
-                  {collection.node.context.collectionTitle}
-                </NavLink>
-              </li>
-            ) : null
-          )}
+          {collections.map(collection => (
+            <li key={collection.shopifyId}>
+              <NavLink to={`/deli/${collection.handle}/`}>
+                {collection.title}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </OverlayContent>
     </Overlay>

@@ -2,16 +2,9 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
-import { SEO, ImageGallery, Quantity } from 'components';
+import { SEO, ImageGallery, Quantity, Breadcrumb } from 'components';
 import CartContext from 'context/CartContext';
-import {
-  Heading,
-  Description,
-  Breadcrumb,
-  Grid,
-  SelectWrapper,
-  Price,
-} from './styles';
+import { Heading, Grid, SelectWrapper, Price, Button } from './styles';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 import { Container } from '../../components/Global/styles';
@@ -28,7 +21,7 @@ export const query = graphql`
   }
 `;
 
-const Product = ({ data }) => {
+const ProductPage = ({ data }) => {
   const { getProductById } = useContext(CartContext);
   const staticProduct = data.shopifyProduct;
   const collection = data.shopifyCollection;
@@ -40,7 +33,6 @@ const Product = ({ data }) => {
   useEffect(() => {
     getProductById(staticProduct.shopifyId).then(res => {
       setDynamicProduct(res);
-      //get the first variant selected when the component renders; search the variants and find the one that matches the selected variant
       setSelectedVariant(
         res.variants.find(({ id }) => id === variantId) || res.variants[0]
       );
@@ -67,22 +59,14 @@ const Product = ({ data }) => {
         keywords={staticProduct.tags}
       />
       <Container>
+        <Button onClick={() => navigate(-1)}>Back to</Button>
         <Grid>
           <div>
-            <Breadcrumb href="/deli">The Deli / </Breadcrumb>
-            <Breadcrumb href={`/deli/${collection.handle}`}>
-              {collection.title} /
-            </Breadcrumb>
-            <Breadcrumb active href={pathname + search}>
-              {' '}
-              {staticProduct.title}
-              {dynamicProduct?.variants.length > 1 &&
-                ' - ' + selectedVariant?.title}
-            </Breadcrumb>
+            {/* <Breadcrumb location={{search, origin, pathname}}  /> */}
             <Heading>{staticProduct.title}</Heading>
             <p>{collection.title}</p>
             <p>{staticProduct.description}</p>
-            {dynamicProduct?.availableForSale && (
+            {dynamicProduct?.availableForSale ? (
               <>
                 {dynamicProduct?.variants.length > 1 && (
                   <SelectWrapper>
@@ -106,6 +90,8 @@ const Product = ({ data }) => {
                   </>
                 )}
               </>
+            ) : (
+              <div>out of stock</div>
             )}
           </div>
           <div>
@@ -120,4 +106,4 @@ const Product = ({ data }) => {
   );
 };
 
-export default Product;
+export default ProductPage;

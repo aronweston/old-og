@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
-import { SEO, Hero } from 'components';
+import { SEO, Hero, FeaturedProducts, CollectionsGrid } from 'components';
 import { Container } from '../components/Global/styles';
 import ProductContext from 'context/ProductContext';
 
 const IndexPage = () => {
   const { collections } = useContext(ProductContext);
-  console.log(collections);
+
   return (
     <>
-      <SEO title="Home" />
+      <SEO
+        title={`Sydney Online Deli | Olive & Grain Delicatessen`}
+        description="Sydney online deli from maroubra"
+        keywords={['Sydney', 'deli']}
+      />
       <Hero />
       <Container>
-        <h1>Hello World</h1>
+        <CollectionsGrid collections={collections} />
+        <FeaturedProducts />
       </Container>
     </>
   );

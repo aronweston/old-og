@@ -27,34 +27,29 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
+  data.allShopifyCollection.edges.forEach(({ node }) => {
+    //Category
+    createPage({
+      path: `deli/${node.handle}/`,
+      component: path.resolve(`./src/templates/Category/index.js`),
+      context: {
+        handle: node.handle,
+        isCollection: true,
+        collectionTitle: node.title,
+      },
+    });
 
-  try {
-    data.allShopifyCollection.edges.forEach(({ node }) => {
-      //Category
+    //Products
+    node.products.map(product => {
       createPage({
-        path: `deli/${node.handle}/`,
-        component: path.resolve(`./src/templates/Category/index.js`),
+        path: `deli/${node.handle}/${product.handle}/`,
+        component: path.resolve(`./src/templates/Product/index.js`),
         context: {
-          handle: node.handle,
-          isCollection: true,
-          collectionTitle: node.title,
+          shopifyId: product.shopifyId,
+          productTitle: product.title,
+          collectionHandle: node.handle,
         },
       });
-
-      //Products
-      node.products.map(product => {
-        createPage({
-          path: `deli/${node.handle}/${product.handle}/`,
-          component: path.resolve(`./src/templates/Product/index.js`),
-          context: {
-            shopifyId: product.shopifyId,
-            productTitle: product.title,
-            collectionHandle: node.handle,
-          },
-        });
-      });
     });
-  } catch (error) {
-    throw new Error(error);
-  }
+  });
 };
