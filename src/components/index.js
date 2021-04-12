@@ -17,4 +17,3 @@ export * from './FeaturedProducts';
 export * from './Breadcrumb';
 export * from './Filters';
 export * from './Checkbox';
-export * from './SearchGrid';
