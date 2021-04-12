@@ -1,6 +1,5 @@
 import Facebook from '../../assets/svg/facebook.svg';
 import Instagram from '../../assets/svg/instagram.svg';
-import tw from 'twin.macro';
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`

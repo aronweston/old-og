@@ -26,6 +26,7 @@
     "gatsby-source-filesystem": "^2.3.14",
     "gatsby-source-shopify": "^3.8.0",
     "gatsby-transformer-sharp": "^2.5.7",
+    "pluralize": "^8.0.0",
     "postcss": "^8.2.9",
     "query-string": "^6.13.1",
     "react": "^16.12.0",

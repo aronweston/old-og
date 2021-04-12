@@ -7,21 +7,33 @@ import queryString from 'query-string';
 const CategoryFilter = ({ title, id }) => {
   const { search } = useLocation();
   const qs = queryString.parse(search);
-  let collectionIds = qs.c?.split(',').filter(c => !!c);
+  let collectionIds = qs.c?.split(',').filter(c => !!c) || [];
+  const checked = collectionIds?.find(cId => cId === id);
 
   const onClick = () => {
     let navTo = `/deli`;
-    console.log(collectionIds);
-    collectionIds.push(id);
 
-    const newIds = collectionIds.map(cId => encodeURIComponent(cId));
+    let newIds = [];
 
-    navigate(`${navTo}?c=${newIds.join(',')}`);
+    if (checked) {
+      newIds = collectionIds
+        .filter(cId => cId !== id)
+        .map(cId => encodeURIComponent(cId));
+    } else {
+      collectionIds.push(id);
+      newIds = collectionIds.map(cId => encodeURIComponent(cId));
+    }
+
+    navigate(`${navTo}${newIds.length ? '?c=' + newIds.join(',') : ''}`);
   };
 
   return (
-    <CategoryFilterWrapper onClick={onClick}>
-      {/* <Checkbox checked={collectionIds.find(cId => cId === id)} /> */}
+    <CategoryFilterWrapper
+      onClick={() => {
+        onClick(id);
+      }}
+    >
+      <Checkbox checked={checked} />
       <p>{title}</p>
     </CategoryFilterWrapper>
   );

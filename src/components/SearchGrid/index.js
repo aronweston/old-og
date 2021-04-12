@@ -1,10 +1,10 @@
 import React from 'react';
-import { ProductGridWrapper } from './styles';
-import ProductTile from './ProductTile';
+import { SearchGridWrapper } from './styles';
+import ProductTile from '../ProductGrid/ProductTile';
 
-export const ProductGrid = ({ products }) => {
+export const SearchGrid = ({ products }) => {
   return (
-    <ProductGridWrapper>
+    <SearchGridWrapper>
       {products?.map(product => (
         <ProductTile
           key={product.product.shopifyId}
@@ -17,6 +17,6 @@ export const ProductGrid = ({ products }) => {
           collectionTitle={product.collection.title}
         />
       ))}
-    </ProductGridWrapper>
+    </SearchGridWrapper>
   );
 };

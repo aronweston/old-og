@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import BackgroundImage from 'gatsby-background-image';
 
-export const CollectionTileWrapper = styled.div``;
-
 export const CollectionImage = styled(BackgroundImage)`
   height: 300px;
   max-height: 100vh;
@@ -30,9 +28,7 @@ export const TileContent = styled.div`
   text-decoration: none;
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
-  > div {
-    padding: 20px;
-  }
+  flex-direction: column;
 `;
 
 export const Title = styled.p`

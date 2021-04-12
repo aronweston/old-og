@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Image from 'gatsby-image';
 import {
   Button,
   CartHeader,
@@ -12,6 +11,7 @@ import {
   CartItem,
 } from './styles';
 import CartContext from 'context/CartContext';
+import { Link } from '../../Global';
 
 export const MiniCart = ({ visible, crossClick }) => {
   const { checkout } = useContext(CartContext);
@@ -25,7 +25,7 @@ export const MiniCart = ({ visible, crossClick }) => {
       <CartHeader>
         <div />
         <CloseBar>
-          <span onClick={crossClick}>×</span>
+          <button onClick={crossClick}>×</button>
         </CloseBar>
       </CartHeader>
     );
@@ -40,7 +40,7 @@ export const MiniCart = ({ visible, crossClick }) => {
             {checkout.lineItems &&
               checkout.lineItems.map(item => (
                 <CartItem key={item.id}>
-                  <img src={item.variant.image?.src} />
+                  <img src={item.variant.image?.src} alt={item.title} />
                   <div>
                     <p>{item.title}</p>
                     <p>
@@ -66,7 +66,7 @@ export const MiniCart = ({ visible, crossClick }) => {
                 }).format(checkout.subtotalPrice)}
               </p>
             </div>
-            <Button onClick={handleCheckout}>Cart</Button>
+            <Link to="/cart">Cart</Link>
             <Button onClick={handleCheckout}>Checkout</Button>
           </ButtonBlock>
         </MiniCartContainer>
@@ -82,11 +82,12 @@ export const MiniCart = ({ visible, crossClick }) => {
               View all of our amazing platters, cakes, quiches and more through
               our online deli!
             </p>
+            <Link to="/deli">Back to the Deli</Link>
           </EmptyCart>
         </MiniCartContainer>
       );
     }
   } else {
-    return 'loading';
+    return null;
   }
 };

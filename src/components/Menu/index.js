@@ -15,7 +15,7 @@ export const Menu = ({ visible, crossClick }) => {
       <CartHeader>
         <div />
         <CloseBar>
-          <span onClick={crossClick}>×</span>
+          <button onClick={crossClick}>×</button>
         </CloseBar>
       </CartHeader>
       <OverlayContent>

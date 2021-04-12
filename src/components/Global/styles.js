@@ -1,8 +1,8 @@
 import tw from 'twin.macro';
 import styled from 'styled-components';
+import { Link as LinkBase } from 'gatsby';
 
-export const Button = styled.button`
-  display: inline-block;
+export const Link = styled(LinkBase)`
   border-radius: 4px;
   background-color: ${props =>
     props.primary
@@ -22,8 +22,37 @@ export const Button = styled.button`
   font-style: italic;
   font-weight: 600;
   padding: 1rem 2rem;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.14);
+    transform: translate(0%, -7%);
+  }
+`;
+
+export const Button = styled.button`
+  border-radius: 4px;
+  background-color: ${props =>
+    props.primary
+      ? 'var(--primary)'
+      : props.secondary
+      ? 'var(--secondary)'
+      : 'transparent'};
+  border: ${props =>
+    props.secondary
+      ? '1px var(--secondary) solid'
+      : '1.5px var(--primary) solid'};
+  color: ${props =>
+    props.primary || props.secondary ? '#fff' : 'var(--primary)'};
+  text-align: center;
+  font-size: 18px;
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  margin: 10px;
   cursor: pointer;
   transition: 0.3s ease;
 

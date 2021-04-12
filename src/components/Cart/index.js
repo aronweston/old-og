@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { CartContainer, CartIcon, Qty } from './styles';
+import { CartContainer, CartIcon } from './styles';
 import CartContext from 'context/CartContext';
+import { Icon } from '../Header/styles';
 
 export const Cart = ({ onClick }) => {
   const { checkout } = useContext(CartContext);
@@ -14,8 +15,10 @@ export const Cart = ({ onClick }) => {
 
   return (
     <CartContainer onClick={onClick}>
-      <CartIcon stroke="#fff" width="25px" />
-      {hasItems && <Qty>{quantity}</Qty>}
+      <Icon>
+        <CartIcon />
+      </Icon>
+      {hasItems && <span>{quantity}</span>}
     </CartContainer>
   );
 };

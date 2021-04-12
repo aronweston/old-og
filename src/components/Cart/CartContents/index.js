@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import {
-  Button,
   CartFooter,
   CartHeader,
   CartItem,
   CartContainer,
   EmptyContainer,
+  CheckoutFooter,
 } from './styles';
 import CartContext from 'context/CartContext';
 import { EmptyCartIcon } from '../MiniCart/styles';
 import { QtyAdjuster } from '../../Quantity/QuantityAdjuster';
 import { RemoveLineItem } from '../RemoveLineItem';
+import { Button, Link } from '../../Global';
 
 export const CartContents = () => {
   const { checkout, updateLineItem } = useContext(CartContext);
-  console.log(checkout);
 
   const getPrice = price => {
     return new Intl.NumberFormat({
@@ -68,6 +68,17 @@ export const CartContents = () => {
             <span>${getPrice(checkout.totalPrice)}</span>
           </div>
         </CartFooter>
+        <CheckoutFooter>
+          <Link to="/deli">Continue Shopping</Link>
+          <Button
+            secondary
+            onClick={() => {
+              window.location.href = checkout.webUrl;
+            }}
+          >
+            Checkout
+          </Button>
+        </CheckoutFooter>
       </CartContainer>
     );
   } else {
@@ -80,7 +91,7 @@ export const CartContents = () => {
             View all of our amazing platters, cakes, quiches and more through
             our online deli!
           </p>
-          <a href="/deli">{/* <Button primary>Shop</Button> */}</a>
+          <Link to="/deli">Back to the Deli</Link>
         </EmptyContainer>
       </section>
     );

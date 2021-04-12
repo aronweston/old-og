@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import {
-  Header as HeaderWrapper,
-  Menu as MenuIcon,
+  HeaderWrapper,
+  MenuIcon,
+  NavLink,
   Container,
   MobileLogo,
   Phone,
+  Icon,
   SearchIcon,
   IconContainer,
 } from './styles';
-import { MiniCart, Cart, Menu, Search } from 'components';
+import { MiniCart, Cart, Menu, Search, SubHeader } from 'components';
 
 const Header = () => {
   const [cartVisible, setCartVisible] = useState(false);
@@ -30,12 +32,24 @@ const Header = () => {
   return (
     <>
       <HeaderWrapper search={searchVisible ? true : null}>
+        {/* <SubHeader /> */}
         <Container>
-          <MobileLogo />
+          <NavLink to="/">
+            <MobileLogo />
+          </NavLink>
           <IconContainer>
-            <Phone />
-            <MenuIcon onClick={showMenu} />
-            <SearchIcon onClick={showSearch} />
+            <Icon>
+              <Phone />
+            </Icon>
+
+            <Icon onClick={showMenu}>
+              <MenuIcon />
+            </Icon>
+
+            <Icon onClick={showSearch}>
+              <SearchIcon />
+            </Icon>
+
             <Cart onClick={showCart} />
           </IconContainer>
         </Container>

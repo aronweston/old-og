@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { Link, Button } from '../../Global';
 
 export const CartFooter = styled.div`
   display: grid;
@@ -70,34 +71,11 @@ export const EmptyContainer = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  display: inline-block;
-  border-radius: 4px;
-  background-color: ${props =>
-    props.primary
-      ? 'var(--primary)'
-      : props.secondary
-      ? 'var(--secondary)'
-      : 'transparent'};
-  border: ${props =>
-    props.secondary
-      ? '1px var(--secondary) solid'
-      : '1.5px var(--primary) solid'};
-  color: ${props =>
-    props.primary || props.secondary ? '#fff' : 'var(--primary)'};
-  text-align: center;
-  font-size: 18px;
-  font-family: var(--font-secondary);
-  font-style: italic;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  margin-top: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: 0.3s ease;
+export const CheckoutFooter = styled.div`
+  display: inline-flex;
+  gap: 20px;
 
-  &:hover {
-    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.14);
-    transform: translate(0%, -7%);
+  ${Link}, ${Button} {
+    margin: 0;
   }
 `;

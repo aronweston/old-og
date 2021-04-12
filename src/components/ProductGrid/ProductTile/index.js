@@ -11,11 +11,11 @@ const ProductTile = ({
   collectionTitle,
   productHandle,
 }) => {
-  console.log(collectionHandle, collectionTitle);
   return (
     <TileWrapper>
       <Image fluid={image} />
       <Title>{title}</Title>
+      <Title>{collectionTitle}</Title>
       <Description>{description}</Description>
       <Price>From ${parseInt(price).toFixed(2)}</Price>
       <Button to={`/deli/${collectionHandle}/${productHandle}`}>Link</Button>

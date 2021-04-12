@@ -4,6 +4,25 @@ import EmptyCartIcon from '../../../assets/svg/empty-leaf.svg';
 import { Button as ButtonBase } from '../../Global';
 export { EmptyCartIcon };
 
+export const MiniCartContainer = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  opacity: ${props => (props.visible ? '1' : '0')};
+  z-index: 9000;
+  height: 100vh;
+  width: 350px;
+  background-color: var(--bkg);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
+  transform: ${props =>
+    props.visible ? 'translateX(0%)' : 'translateX(100%)'};
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
 export const CartContainer = styled.div`
   overflow: auto;
   height: calc(100% - 253px);
@@ -86,26 +105,8 @@ export const Button = styled(ButtonBase)`
   }
 `;
 
-export const MiniCartContainer = styled.div`
-  position: fixed;
-  right: 0;
-  top: 0;
-  opacity: ${props => (props.visible ? '1' : '0')};
-  z-index: 9000;
-  height: 100vh;
-  width: 350px;
-  background-color: var(--bkg);
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
-  transform: ${props =>
-    props.visible ? 'translateX(0%)' : 'translateX(100%)'};
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
 export const CartHeader = styled.div`flex justify-between items-center`;
+
 export const EmptyCart = styled.div`
   height: 70vh;
   width: 100%;
@@ -119,7 +120,7 @@ export const EmptyCart = styled.div`
   > span {
     font-size: 35px;
     font-family: 'Abril Fatface';
-    color: white;
+    color: black;
     padding-top: 25px;
   }
 

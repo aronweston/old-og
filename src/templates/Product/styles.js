@@ -1,6 +1,4 @@
-import tw from 'twin.macro';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 export const Heading = styled.h1`
   font-weight: bold;

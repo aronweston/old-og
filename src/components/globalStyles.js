@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     --font-primary: "Abril Fatface", serif;
     --font-secondary: "Abril Display", serif;
     --paragraph-font: "Laca text", sans-serif;
+    --gutter: 20px;
   }
 
   h1,
@@ -27,6 +28,16 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: var(--paragraph-font)
+  }
+
+    ::-webkit-scrollbar
+  {
+      width: 0px;
+  }
+  ::-webkit-scrollbar-track-piece
+  {
+      background-color: transparent;
+      -webkit-border-radius: 6px;
   }
 
   .icon {

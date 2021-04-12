@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import { Link } from 'gatsby';
 
 export const Overlay = styled.div`
@@ -78,4 +77,4 @@ export const CloseBar = styled.div`
   }
 `;
 
-export const CartHeader = styled.div`flex justify-between items-center`;
+export const CartHeader = styled.div``;
