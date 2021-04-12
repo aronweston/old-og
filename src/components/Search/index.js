@@ -44,7 +44,7 @@ export const Search = ({ visible, crossClick }) => {
       />
 
       <ProductContainer>
-        <ProductGrid products={allProducts} />
+        <ProductGrid products={searchProducts} />
       </ProductContainer>
     </SearchContainer>
   );

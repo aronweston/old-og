@@ -1,26 +1,30 @@
-import React from 'react';
-import Image from 'gatsby-image';
-import { Link } from 'gatsby';
-import { Grid, ProductContainer, BgImage } from './styles';
+import React, { useContext } from 'react';
+import { GridContainer, BgImage } from './styles';
 import { Container } from '../../components/Global/styles';
-import { SEO } from 'components';
+import { SEO, ProductGrid } from 'components';
+import ProductContext from 'context/ProductContext';
 
 export const query = graphql`
   query CollectionQuery($handle: String) {
     shopifyCollection(handle: { eq: $handle }) {
       ...ShopifyCollectionFields
-      products {
-        ...ShopifyProductFields
-        variants {
-          price
-        }
-      }
     }
   }
 `;
 
 const Category = ({ data }) => {
+  const { allProducts } = useContext(ProductContext);
   const category = data.shopifyCollection;
+
+  const categoryProducts = allProducts.filter(product => {
+    console.log(product.shopifyId);
+    if (category.shopifyId === product.collection.shopifyId) {
+      return product;
+    }
+  });
+
+  console.log(categoryProducts);
+
   return (
     <>
       <SEO title={category.title} description={category.description} />
@@ -34,21 +38,9 @@ const Category = ({ data }) => {
           <h1>{category.title}</h1>
           <p>{category.description}</p>
         </BgImage>
-        <Grid>
-          {category.products?.map(product => (
-            <ProductContainer key={product.shopifyId}>
-              <Link to={product.handle}>
-                <Image
-                  fluid={product.images[0].localFile?.childImageSharp.fluid}
-                  alt={product.title}
-                />
-                <p>{product.title}</p>
-                <span>{product.description}</span>
-                <span>{product.variants[0].price}</span>
-              </Link>
-            </ProductContainer>
-          ))}
-        </Grid>
+        <GridContainer>
+          <ProductGrid products={categoryProducts} />
+        </GridContainer>
       </Container>
     </>
   );

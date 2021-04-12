@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import {
-  Button,
   CartHeader,
   CloseBar,
   EmptyCart,
@@ -11,14 +10,10 @@ import {
   CartItem,
 } from './styles';
 import CartContext from 'context/CartContext';
-import { Link } from '../../Global';
+import { Link, Button } from '../../Global';
 
 export const MiniCart = ({ visible, crossClick }) => {
   const { checkout } = useContext(CartContext);
-
-  const handleCheckout = () => {
-    window.open(checkout.webUrl);
-  };
 
   const CartHeaderContainer = () => {
     return (
@@ -67,7 +62,13 @@ export const MiniCart = ({ visible, crossClick }) => {
               </p>
             </div>
             <Link to="/cart">Cart</Link>
-            <Button onClick={handleCheckout}>Checkout</Button>
+            <Button
+              onClick={() => {
+                window.location.href = checkout.webUrl;
+              }}
+            >
+              Checkout
+            </Button>
           </ButtonBlock>
         </MiniCartContainer>
       );

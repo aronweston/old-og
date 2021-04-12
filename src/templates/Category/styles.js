@@ -4,24 +4,7 @@ import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
-
-export const ProductContainer = styled.div`
-  ${tw`rounded`}
-`;
-
-// export const CategoryHeader = styled.div`
-//   background: url(${props => props.image});
-//   background-size: cover;
-// `;
+export const GridContainer = styled.div``;
 
 const Parent = styled.div`
   position: relative;
