@@ -1,10 +1,16 @@
 /* eslint-disable jsx-a11y/no-onchange */
-
 import React, { useContext, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { SEO, ImageGallery, Quantity, Breadcrumb } from 'components';
 import CartContext from 'context/CartContext';
-import { Heading, Grid, SelectWrapper, Price, Button } from './styles';
+import {
+  Heading,
+  Grid,
+  SelectWrapper,
+  Price,
+  Link,
+  Description,
+} from './styles';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 import { Container } from '../../components/Global/styles';
@@ -49,8 +55,6 @@ const ProductPage = ({ data }) => {
       { replace: true }
     );
   };
-  console.log(staticProduct);
-
   return (
     <>
       <SEO
@@ -59,13 +63,16 @@ const ProductPage = ({ data }) => {
         keywords={staticProduct.tags}
       />
       <Container>
-        <Button onClick={() => navigate(-1)}>Back to</Button>
         <Grid>
           <div>
-            {/* <Breadcrumb location={{search, origin, pathname}}  /> */}
+            <Breadcrumb
+              cHandle={collection.handle}
+              cTitle={collection.title}
+              product={staticProduct}
+            />
             <Heading>{staticProduct.title}</Heading>
-            <p>{collection.title}</p>
-            <p>{staticProduct.description}</p>
+            <Link to={`/deli/${collection.handle}`}>{collection.title}</Link>
+            <Description>{staticProduct.description} </Description>
             {dynamicProduct?.availableForSale ? (
               <>
                 {dynamicProduct?.variants.length > 1 && (
@@ -80,18 +87,21 @@ const ProductPage = ({ data }) => {
                     </select>
                   </SelectWrapper>
                 )}
+                {!!selectedVariant && <Price>${selectedVariant?.price}</Price>}
                 {!!selectedVariant && (
-                  <>
-                    <Price>${selectedVariant?.price}</Price>
-                    <Quantity
-                      variantId={selectedVariant.id}
-                      available={selectedVariant.available}
-                    />
-                  </>
+                  <Quantity
+                    variantId={selectedVariant.id}
+                    available={selectedVariant.available}
+                  />
                 )}
               </>
             ) : (
-              <div>out of stock</div>
+              <>
+                <div>Checking stock...</div>
+                {dynamicProduct?.variants.length === 0 && (
+                  <div>out of stock</div>
+                )}
+              </>
             )}
           </div>
           <div>

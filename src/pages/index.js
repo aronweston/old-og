@@ -5,7 +5,6 @@ import ProductContext from 'context/ProductContext';
 
 const IndexPage = () => {
   const { collections } = useContext(ProductContext);
-
   return (
     <>
       <SEO

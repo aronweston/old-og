@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-export const Overlay = styled.div`
+export const SideMenuContainer = styled.div`
   height: 100vh;
   width: 350px;
   position: fixed;
@@ -10,29 +10,37 @@ export const Overlay = styled.div`
   top: 0;
   background-color: var(--primary);
   overflow-x: hidden;
-  transition: 0.5s;
-  opacity: ${props => (props.visible ? '1' : '0')};
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
-  transform: ${props =>
-    props.visible ? 'translateX(0%)' : 'translateX(-100%)'};
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-
+  ${props => (props.visible === true ? visible : notVisible)};
   @media screen and (max-width: 768px) {
     width: 100%;
   }
 `;
 
-export const OverlayContent = styled.nav`
+const visible = `
+transform: translateX(0%);
+transition: transform 0.5s;
+opacity: 1;
+`;
+
+const notVisible = `
+opacity: 0;
+transform: translateX(-100%);
+transition: transform 0.5s, opacity 5s ease-out;
+`;
+
+export const MenuContent = styled.nav`
   display: flex;
+  flex-direction: column;
   width: 100%;
   text-align: left;
-  margin-top: 30px;
+  padding: 15px;
+`;
 
-  > ul {
-    > li {
-      list-style: none;
-    }
+export const NavList = styled.ul`
+  margin: 0px;
+  > li {
+    list-style: none;
   }
 `;
 
@@ -59,7 +67,8 @@ export const NavLink = styled(Link)`
 `;
 
 export const CloseBar = styled.div`
-  padding: 25px;
+  padding: 0px 25px;
+  padding-top: 10px;
   position: relative;
   line-height: 1;
   z-index: 11;

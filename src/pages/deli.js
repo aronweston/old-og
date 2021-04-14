@@ -5,11 +5,27 @@ import styled from 'styled-components';
 import { Container } from '../components/Global/index.js';
 import { useLocation } from '@reach/router';
 import queryString from 'query-string';
+
 export const Content = styled.div`
   display: grid;
   grid-gap: 20px;
   margin-top: 20px;
-  grid-template-columns: 200px 3fr;
+  grid-template-columns: 200px 1fr;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    > div:first-child {
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      margin: 0 auto;
+      z-index: 5;
+      margin-left: -15px;
+      height: auto;
+      width: 100%;
+      background: var(--bkg);
+    }
+  }
 `;
 
 const DeliPage = () => {

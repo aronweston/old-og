@@ -16,7 +16,6 @@ export const Search = ({ visible, crossClick }) => {
   const handleSearch = value => {
     setSearch(value);
     const query = value.toLowerCase();
-
     setSearchProducts(
       allProducts.filter(
         product =>
@@ -36,7 +35,6 @@ export const Search = ({ visible, crossClick }) => {
         </strong>
         <button onClick={crossClick}>x</button>
       </TitleBlock>
-
       <SearchInput
         value={search}
         placeholder="Search for your product"

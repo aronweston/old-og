@@ -1,6 +1,7 @@
 import tw from 'twin.macro';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import { Container as ContainerBase } from '../Global';
 
 import HeaderLogo from '../../assets/svg/header-logo.svg';
 import MenuIcon from '../../assets/svg/menu.svg';
@@ -17,14 +18,13 @@ export const HeaderWrapper = styled.header`
   background: ${props => (props.search ? 'var(--secondary)' : 'transparent')};
 `;
 
-export const Container = styled.div`
-  ${tw`container mx-auto`}
-  margin: 0 auto;
+export const HeaderContainer = styled(ContainerBase)`
   display: flex;
   justify-content: space-between;
   justify-items: stretch;
   padding-top: 1em;
   padding-bottom: 1em;
+  padding: 15px;
 `;
 
 export const Icon = styled.button`
@@ -33,6 +33,22 @@ export const Icon = styled.button`
       stroke: var(--secondary);
     }
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:nth-child(3) {
+    ${props => props.clicked && Clicked}
+    }
+  }
+`;
+
+const Clicked = `
+  outline: none;
+  background: white;
+  padding: 13px;
+  border-radius: 100px;
 `;
 
 export const IconContainer = styled.div`

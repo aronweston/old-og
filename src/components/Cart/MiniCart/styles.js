@@ -1,31 +1,39 @@
 import tw from 'twin.macro';
 import styled from 'styled-components';
 import EmptyCartIcon from '../../../assets/svg/empty-leaf.svg';
-import { Button as ButtonBase } from '../../Global';
+import { Button as ButtonBase, Link as LinkBase } from '../../Global';
 export { EmptyCartIcon };
 
 export const MiniCartContainer = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  opacity: ${props => (props.visible ? '1' : '0')};
   z-index: 9000;
   height: 100vh;
   width: 350px;
   background-color: var(--bkg);
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.06);
-  transform: ${props =>
-    props.visible ? 'translateX(0%)' : 'translateX(100%)'};
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
-    visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  ${props => (props.visible === true ? visible : notVisible)};
   @media screen and (max-width: 768px) {
     width: 100%;
   }
 `;
 
+const visible = `
+transform: translateX(0%);
+transition: transform 0.5s;
+opacity: 1;
+`;
+
+const notVisible = `
+opacity: 0;
+transform: translateX(100%);
+transition: transform 0.5s, opacity 5s ease-out;
+`;
+
 export const CartContainer = styled.div`
   overflow: auto;
-  height: calc(100% - 253px);
+  height: calc(100% - 220px);
 `;
 
 export const CartItem = styled.div`
@@ -33,6 +41,7 @@ export const CartItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+  text-align: left;
 
   @media screen and (min-width: 768px) {
     width: 85%;
@@ -96,13 +105,23 @@ export const ButtonBlock = styled.div`
   }
 `;
 
-export const Button = styled(ButtonBase)`
+const buttonStyles = `
+margin: 0;
   margin-top: 5px;
   margin-right: 0;
   padding: 0.8rem 2rem;
   &:hover {
     transform: none;
   }
+
+`;
+
+export const Button = styled(ButtonBase)`
+  ${buttonStyles}
+`;
+
+export const Link = styled(LinkBase)`
+  ${buttonStyles}
 `;
 
 export const CartHeader = styled.div`flex justify-between items-center`;
@@ -116,6 +135,10 @@ export const EmptyCart = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  > * {
+    padding-bottom: 10px;
+  }
 
   > span {
     font-size: 35px;
@@ -133,7 +156,7 @@ export const EmptyCart = styled.div`
 
   @media (min-width: 768px) {
     > p {
-      width: 30%;
+      width: 40%;
     }
   }
 

@@ -4,10 +4,9 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  }
 `;
 
 export const Main = styled.main`
   flex: 1;
-  margin-top: ${props => (props.homePage ? '0px' : '76px')};
+  margin: ${props => (props.homePage ? '0 auto' : '80px auto auto auto')};
 `;

@@ -45,8 +45,7 @@ export const CartItem = styled.div`
 `;
 
 export const CartContainer = styled.div`
-  margin: 0 auto;
-  padding: 1rem;
+  overflow: auto;
 `;
 
 export const EmptyContainer = styled.div`

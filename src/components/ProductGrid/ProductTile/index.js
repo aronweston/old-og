@@ -6,19 +6,19 @@ const ProductTile = ({
   title,
   image,
   price,
-  description,
+  // description,
   collectionHandle,
-  collectionTitle,
+  // collectionTitle,
   productHandle,
 }) => {
   return (
-    <TileWrapper>
+    <TileWrapper to>
       <Image fluid={image} />
       <Title>{title}</Title>
-      <Title>{collectionTitle}</Title>
-      <Description>{description}</Description>
       <Price>From ${parseInt(price).toFixed(2)}</Price>
-      <Button to={`/deli/${collectionHandle}/${productHandle}`}>Link</Button>
+      <Button secondary to={`/deli/${collectionHandle}/${productHandle}`}>
+        Buy now
+      </Button>
     </TileWrapper>
   );
 };

@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { Link as LinkBase } from 'gatsby';
 
 export const Heading = styled.h1`
   font-weight: bold;
+  margin: 20px 0px 10px 0px;
+`;
+
+export const Description = styled.p`
+  margin-top: 10px;
 `;
 
 export const Grid = styled.section`
@@ -23,27 +29,26 @@ export const Grid = styled.section`
 
 export const SelectWrapper = styled.div`
   margin-top: 40px;
+
   > strong {
     display: block;
     margin-bottom: 8px;
   }
+
+  > select {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 export const Price = styled.div`
-  margin: 40px 0;
+  margin: 25px 0;
   font-weight: bold;
   font-size: 30px;
 `;
 
-export const Button = styled.button`
-  border: 1px solid black;
-  text-decoration: none;
-  display: block;
-  padding: 10px;
-  text-align: center;
+export const Link = styled(LinkBase)`
+  text-align: left;
   font-weight: bold;
-  &:hover {
-    background: var(--secondary);
-    color: white;
-  }
+  font-size: 20px;
 `;

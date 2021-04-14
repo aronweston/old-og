@@ -9,7 +9,6 @@ export const ProductGrid = ({ products }) => {
         <ProductTile
           key={product.product.shopifyId}
           title={product.product.title}
-          description={product.product.description}
           price={product.product.priceRange.minVariantPrice.amount}
           image={product.product.images[0].localFile.childImageSharp.fluid}
           productHandle={product.product.handle}

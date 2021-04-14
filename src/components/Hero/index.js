@@ -1,18 +1,26 @@
 import React from 'react';
-import { StaticImage as Image } from 'gatsby-plugin-image';
-import { HeroContainer, TextWrapper, Title } from './styles';
-import { Button } from '../Global/styles';
+import { HeroContainer, BackgroundImage, Content } from './styles';
+import { Link } from '../Global';
 
 export const Hero = () => {
   return (
     <HeroContainer>
-      <Image src="../../images/platter-left.png" alt="" />
-      <TextWrapper>
-        <Title>There's something for everyone at Olive & Grain</Title>
-        <Button primary> Shop Now</Button>
-        <Button> Click Me</Button>
-      </TextWrapper>
-      <Image src="../../images/platter-right.png" alt="" />
+      <BackgroundImage>
+        <div></div>
+        <Content>
+          <div>
+            <h1>There's something for everyone at Olive & Grain</h1>
+            <p>
+              A family run deli with over 20 years experience, you can trust
+              that from salty to sweet, we have you covered.
+            </p>
+            <Link to="/deli" primary>
+              Shop Now
+            </Link>
+          </div>
+        </Content>
+        <div></div>
+      </BackgroundImage>
     </HeroContainer>
   );
 };

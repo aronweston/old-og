@@ -8,13 +8,15 @@ import {
   ButtonBlock,
   CartContainer,
   CartItem,
+  Button,
+  Link,
 } from './styles';
 import CartContext from 'context/CartContext';
-import { Link, Button } from '../../Global';
 
 export const MiniCart = ({ visible, crossClick }) => {
   const { checkout } = useContext(CartContext);
 
+  // visible = true;
   const CartHeaderContainer = () => {
     return (
       <CartHeader>
@@ -27,29 +29,28 @@ export const MiniCart = ({ visible, crossClick }) => {
   };
 
   if (checkout) {
-    if (checkout.lineItems.length > 0) {
+    if (checkout?.lineItems.length > 0) {
       return (
         <MiniCartContainer visible={visible ? true : null}>
           <CartHeaderContainer />
           <CartContainer>
-            {checkout.lineItems &&
-              checkout.lineItems.map(item => (
-                <CartItem key={item.id}>
-                  <img src={item.variant.image?.src} alt={item.title} />
-                  <div>
-                    <p>{item.title}</p>
-                    <p>
-                      Platters
-                      {item.variant.title === 'Default Title'
-                        ? ''
-                        : ' / ' + item.variant.title}
-                    </p>
-                    <p></p>
-                    <p>Qty: {item.quantity}</p>
-                    <p>${item.quantity * item.variant.price}</p>
-                  </div>
-                </CartItem>
-              ))}
+            {checkout?.lineItems.map(item => (
+              <CartItem key={item.id}>
+                <img src={item.variant.image?.src} alt={item.title} />
+                <div>
+                  <p>{item.title}</p>
+                  <p>
+                    Platters
+                    {item.variant.title === 'Default Title'
+                      ? ''
+                      : ' / ' + item.variant.title}
+                  </p>
+                  <p></p>
+                  <p>Qty: {item.quantity}</p>
+                  <p>${item.quantity * item.variant.price}</p>
+                </div>
+              </CartItem>
+            ))}
           </CartContainer>
           <ButtonBlock>
             <div>
@@ -61,8 +62,11 @@ export const MiniCart = ({ visible, crossClick }) => {
                 }).format(checkout.subtotalPrice)}
               </p>
             </div>
-            <Link to="/cart">Cart</Link>
+            <Link onClick={crossClick} to="/cart">
+              Cart
+            </Link>
             <Button
+              secondary
               onClick={() => {
                 window.location.href = checkout.webUrl;
               }}
@@ -83,7 +87,9 @@ export const MiniCart = ({ visible, crossClick }) => {
               View all of our amazing platters, cakes, quiches and more through
               our online deli!
             </p>
-            <Link to="/deli">Back to the Deli</Link>
+            <Link onClick={crossClick} to="/deli">
+              Shop Now
+            </Link>
           </EmptyCart>
         </MiniCartContainer>
       );

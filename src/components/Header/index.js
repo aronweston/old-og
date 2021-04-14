@@ -3,7 +3,7 @@ import {
   HeaderWrapper,
   MenuIcon,
   NavLink,
-  Container,
+  HeaderContainer,
   MobileLogo,
   Phone,
   Icon,
@@ -18,42 +18,53 @@ const Header = () => {
   const [searchVisible, setSearchVisible] = useState(false);
 
   const showCart = () => {
+    closeAll();
     !cartVisible ? setCartVisible(true) : setCartVisible(false);
   };
 
   const showMenu = () => {
+    closeAll();
     !menuVisible ? setMenuVisible(true) : setMenuVisible(false);
   };
 
   const showSearch = () => {
+    closeAll();
     !searchVisible ? setSearchVisible(true) : setSearchVisible(false);
+    setMenuVisible(false);
+    setCartVisible(false);
+  };
+
+  const closeAll = () => {
+    setSearchVisible(false);
+    setMenuVisible(false);
+    setCartVisible(false);
   };
 
   return (
-    <>
-      <HeaderWrapper search={searchVisible ? true : null}>
-        {/* <SubHeader /> */}
-        <Container>
-          <NavLink to="/">
-            <MobileLogo />
-          </NavLink>
-          <IconContainer>
-            <Icon>
+    <HeaderWrapper search={searchVisible ? true : null}>
+      {/* <SubHeader /> */}
+      <HeaderContainer>
+        <NavLink to="/">
+          <MobileLogo />
+        </NavLink>
+        <IconContainer>
+          <Icon onClick={closeAll}>
+            <NavLink to="/contact">
               <Phone />
-            </Icon>
+            </NavLink>
+          </Icon>
 
-            <Icon onClick={showMenu}>
-              <MenuIcon />
-            </Icon>
+          <Icon onClick={showMenu}>
+            <MenuIcon />
+          </Icon>
 
-            <Icon onClick={showSearch}>
-              <SearchIcon />
-            </Icon>
+          <Icon onClick={showSearch} clicked={!!searchVisible}>
+            <SearchIcon />
+          </Icon>
 
-            <Cart onClick={showCart} />
-          </IconContainer>
-        </Container>
-      </HeaderWrapper>
+          <Cart onClick={showCart} />
+        </IconContainer>
+      </HeaderContainer>
 
       <MiniCart
         visible={cartVisible}
@@ -66,7 +77,7 @@ const Header = () => {
         visible={searchVisible}
         crossClick={() => setSearchVisible(false)}
       />
-    </>
+    </HeaderWrapper>
   );
 };
 

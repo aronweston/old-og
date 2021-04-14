@@ -5,16 +5,27 @@ export const CollectionImage = styled(BackgroundImage)`
   height: 300px;
   max-height: 100vh;
   flex: 1 1 40%;
-  margin: 0 5px;
 
   &:first-child {
     flex: 1 1 100%;
     margin-bottom: 5px;
   }
 
+  &:nth-child(even) {
+    margin-right: 5px;
+  }
+
+  &:after {
+    border-radius: 4px;
+  }
+
   @media (max-width: 768px) {
     flex: 1 1 100%;
+    margin: 0;
     margin-bottom: 5px;
+    &:nth-child(even) {
+      margin-right: 0px;
+    }
   }
 `;
 
@@ -29,6 +40,7 @@ export const TileContent = styled.div`
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
   flex-direction: column;
+  border-radius: 4px;
 `;
 
 export const Title = styled.p`

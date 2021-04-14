@@ -64,3 +64,26 @@ export const Input = styled.input`
     border-color: black;
   }
 `;
+
+export const Message = styled.div`
+  width: 100%;
+  display: none;
+  padding: 1rem;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+
+  ${props =>
+    props.class === 'success' ? success : props.class === 'fail' ? fail : ''}
+`;
+
+const success = `
+background-color: rgba(110, 231, 183, 1);
+display: block;
+`;
+
+const fail = `
+background-color: rgba(248, 113, 113, 1);
+display: block;
+`;

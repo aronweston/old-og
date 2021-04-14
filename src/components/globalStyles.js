@@ -27,7 +27,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: var(--paragraph-font)
+    font-family: var(--paragraph-font);
+    background-color: var(--bkg);
   }
 
     ::-webkit-scrollbar

@@ -2,6 +2,38 @@ import tw from 'twin.macro';
 import styled from 'styled-components';
 import { Link as LinkBase } from 'gatsby';
 
+const styles = `
+  border-radius: 4px;
+  background-color: ${props =>
+    props.primary
+      ? 'var(--primary)'
+      : props.secondary
+      ? 'var(--secondary)'
+      : 'transparent'};
+  border: ${props =>
+    props.secondary
+      ? '1px var(--secondary) solid'
+      : '1.5px var(--primary) solid'};
+  color: ${props =>
+    props.primary || props.secondary ? '#fff' : 'var(--primary)'};
+  text-align: center;
+  font-size: 18px;
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.14);
+    transform: translate(0%, -7%);
+  }`;
+
+export const ExLink = styled.a`
+  ${styles}
+`;
+
 export const Link = styled(LinkBase)`
   border-radius: 4px;
   background-color: ${props =>
@@ -22,7 +54,6 @@ export const Link = styled(LinkBase)`
   font-style: italic;
   font-weight: 600;
   padding: 1rem 2rem;
-  margin: 10px;
   cursor: pointer;
   transition: 0.3s ease;
 
@@ -52,7 +83,6 @@ export const Button = styled.button`
   font-style: italic;
   font-weight: 600;
   padding: 1rem 2rem;
-  margin: 10px;
   cursor: pointer;
   transition: 0.3s ease;
 
@@ -64,6 +94,7 @@ export const Button = styled.button`
 
 export const Container = styled.div`
   ${tw`container mx-auto`}
+  padding: 15px;
 `;
 
 export const Grid = styled.section`
