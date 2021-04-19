@@ -1,5 +1,5 @@
 import React from 'react';
-import './src/assets/css/tailwind.css';
+import './node_modules/modern-normalize/modern-normalize.css';
 import { ProductContextProvider } from './src/context/ProductContext';
 import { CartContextProvider } from './src/context/CartContext';
 import { GlobalStyle } from './src/components/globalStyles';

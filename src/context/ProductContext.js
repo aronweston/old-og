@@ -45,7 +45,6 @@ export default ProductContext;
 export function ProductContextProvider({ children }) {
   const { allShopifyCollection, allShopifyProduct } = useStaticQuery(query);
 
-  console.log(allShopifyCollection);
   const featuredProducts = () => {
     let featuredProducts = [];
     allShopifyCollection.edges.map(({ node }) => {

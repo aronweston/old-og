@@ -1,8 +1,7 @@
-import tw from 'twin.macro';
 import styled from 'styled-components';
 import { Link as LinkBase } from 'gatsby';
 
-const styles = `
+export const ExLink = styled.a`
   border-radius: 4px;
   background-color: ${props =>
     props.primary
@@ -28,10 +27,7 @@ const styles = `
   &:hover {
     box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.14);
     transform: translate(0%, -7%);
-  }`;
-
-export const ExLink = styled.a`
-  ${styles}
+  }
 `;
 
 export const Link = styled(LinkBase)`
@@ -93,7 +89,7 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  ${tw`container mx-auto`}
+  margin: 0 auto;
   padding: 15px;
 `;
 

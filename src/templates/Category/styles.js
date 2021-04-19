@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
@@ -37,8 +36,14 @@ const Content = styled.div`
   height: 100%;
   width: 100%;
 
-  > h1 {
-    color: white;
+  > div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    h1 {
+      color: white;
+    }
   }
 `;
 

@@ -8,5 +8,5 @@ export const PageContainer = styled.div`
 
 export const Main = styled.main`
   flex: 1;
-  margin: ${props => (props.homePage ? '0 auto' : '80px auto auto auto')};
+  margin-top: ${props => (props.homePage ? '0px' : '80px')};
 `;

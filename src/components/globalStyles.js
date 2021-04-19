@@ -40,19 +40,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color: transparent;
       -webkit-border-radius: 6px;
   }
-
-  .icon {
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .icon:hover {
-    transform: translate(0px, -5px);
-  }
-
-  .header-space {
-    margin-top: 76px;
-  }
-
+  
   select{
     height: 40px;
     font-size: 16px;
@@ -88,4 +76,7 @@ export const GlobalStyle = createGlobalStyle`
       list-style: disc;
     }
   }
+
+
+
 `;

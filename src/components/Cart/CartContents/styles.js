@@ -1,22 +1,13 @@
 import styled from 'styled-components';
-import tw from 'twin.macro';
 import { Link, Button } from '../../Global';
 
-export const CartFooter = styled.div`
-  display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
-  > div {
-    padding: 8px;
-
-    &:first-child {
-      text-align: right;
-    }
-  }
+export const CartContainer = styled.div`
+  overflow: auto;
 `;
 
 export const CartHeader = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
   border-bottom: 1px solid black;
   font-weight: bold;
 
@@ -29,6 +20,7 @@ export const CartItem = styled.div`
   border-bottom: 1px solid black;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+  overflow-x: scroll;
   > div {
     padding: 8px;
     &:first-child {
@@ -44,12 +36,45 @@ export const CartItem = styled.div`
   }
 `;
 
-export const CartContainer = styled.div`
-  overflow: auto;
+export const CartFooter = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 5fr 1fr 1fr;
+  }
+
+  > div {
+    padding: 8px;
+
+    &:first-child {
+      text-align: right;
+    }
+  }
+`;
+
+export const CheckoutFooter = styled.div`
+  display: flex;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    display: inline-flex;
+  }
+
+  ${Link}, ${Button} {
+    margin: 0;
+
+    @media (max-width: 425px) {
+      padding: 0.85rem;
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
 `;
 
 export const EmptyContainer = styled.div`
-  ${tw`py-20`};
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -67,14 +92,5 @@ export const EmptyContainer = styled.div`
     > p {
       width: 30%;
     }
-  }
-`;
-
-export const CheckoutFooter = styled.div`
-  display: inline-flex;
-  gap: 20px;
-
-  ${Link}, ${Button} {
-    margin: 0;
   }
 `;

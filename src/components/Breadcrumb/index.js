@@ -6,11 +6,9 @@ export const Breadcrumb = ({ cHandle, cTitle, product }) => {
   const { search, origin, pathname } = useLocation();
   return (
     <>
-      <CrumbLink href="/deli">The Deli / </CrumbLink>
-      <CrumbLink href={`/deli/${cHandle}`}>{cTitle} / </CrumbLink>
-      <CrumbLink active href={pathname + search}>
-        {product.title}
-      </CrumbLink>
+      <CrumbLink to="/deli">The Deli / </CrumbLink>
+      <CrumbLink to={`/deli/${cHandle}`}>{cTitle} / </CrumbLink>
+      <CrumbLink to={pathname + search}>{product.title}</CrumbLink>
     </>
   );
 };

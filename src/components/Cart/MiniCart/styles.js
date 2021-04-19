@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import styled from 'styled-components';
 import EmptyCartIcon from '../../../assets/svg/empty-leaf.svg';
 import { Button as ButtonBase, Link as LinkBase } from '../../Global';
@@ -55,7 +54,7 @@ export const CartItem = styled.div`
 
   > img {
     width: 100%;
-    ${tw`rounded`}
+    border-radius: 0.25rem;
     @media screen and (min-width: 768px) {
       width: 90%;
       margin-right: auto;
@@ -124,7 +123,7 @@ export const Link = styled(LinkBase)`
   ${buttonStyles}
 `;
 
-export const CartHeader = styled.div`flex justify-between items-center`;
+export const CartHeader = styled.div``;
 
 export const EmptyCart = styled.div`
   height: 70vh;

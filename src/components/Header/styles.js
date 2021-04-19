@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { Container as ContainerBase } from '../Global';

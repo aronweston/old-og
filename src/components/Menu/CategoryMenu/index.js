@@ -5,21 +5,17 @@ import {
   CollectionList,
   NavLink,
 } from './styles';
+import { Link } from 'gatsby';
 
 const CategoryMenu = ({ collections, exit }) => {
-  //   const [productsVisible, setProductsVisible] = useState(false);
-  //   const showProducts = () => {
-  //     !productsVisible ? setProductsVisible(true) : setProductsVisible(false);
-  //   };
   return (
     <>
       {collections.map(collection => (
         <CollectionList key={collection.shopifyId}>
           <CollectionHeader>
-            <strong>{collection.title}</strong>
-            {/* <button onClick={showProducts}> */}
-            {/* <ChevronDown /> */}
-            {/* </button> */}
+            <Link to={`/deli/${collection.handle}`}>
+              <strong onClick={() => exit()}>{collection.title}</strong>
+            </Link>
           </CollectionHeader>
           {collection.products.map(product => (
             <li key={product.shopifyId}>

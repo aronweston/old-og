@@ -31,10 +31,7 @@ export const CollectionHeader = styled.div`
   font-size: 36px;
   line-height: 36px;
 
-  > button {
-  }
-
-  > strong {
+  > a > strong {
     color: white;
     padding: 8px;
   }

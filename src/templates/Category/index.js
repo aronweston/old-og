@@ -23,21 +23,21 @@ const Category = ({ data }) => {
     }
   });
 
-  console.log(categoryProducts);
-
   return (
     <>
       <SEO title={category.title} description={category.description} />
-      <Container>
-        <BgImage
-          title={category.title}
-          fluid={category.image?.localFile.childImageSharp.fluid}
-          overlayColor="#04040454"
-          height="300px"
-        >
+      <BgImage
+        title={category.title}
+        fluid={category.image?.localFile.childImageSharp.fluid}
+        overlayColor="#04040454"
+        height="300px"
+      >
+        <div>
           <h1>{category.title}</h1>
           <p>{category.description}</p>
-        </BgImage>
+        </div>
+      </BgImage>
+      <Container>
         <GridContainer>
           <ProductGrid products={categoryProducts} />
         </GridContainer>

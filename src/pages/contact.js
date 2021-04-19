@@ -29,7 +29,7 @@ export const ContactForm = styled.form`
   max-width: 800px;
   margin: 0 auto;
   gap: 20px;
-  padding: 3rem;
+  padding: 2rem;
 
   > h1 {
     margin: 0;
@@ -86,7 +86,7 @@ export const MapGrid = styled.section`
 
 export const Info = styled.div`
   background-color: var(--primary);
-  padding: 3rem;
+  padding: 2rem;
   color: white;
 
   > div {
@@ -106,6 +106,7 @@ export const Info = styled.div`
 
 export const Map = styled.div`
   display: flex;
+  width: 100%;
   background: url(${MapBkg});
 
   background-size: cover;
@@ -114,9 +115,13 @@ export const Map = styled.div`
 
   @media (max-width: 768px) {
     height: 350px;
+    width: 100vw;
+  }
+  @media (max-width: 425px) {
+    justify-content: left;
   }
 
-  padding: 3rem;
+  padding: 2rem;
   justify-content: center;
   > div {
     display: inline-flex;
@@ -124,8 +129,11 @@ export const Map = styled.div`
     align-items: baseline;
     gap: 10px;
     align-self: flex-end;
+    @media (max-width: 425px) {
+      flex-direction: column;
+    }
   }
-  > ${Link} {
+  > ${ExLink} {
     margin: 10px;
   }
 `;
@@ -204,30 +212,30 @@ const ContactPage = () => {
         </Info>
         <Map>
           <div>
-            <Link
+            <ExLink
               target="_blank"
               rel="noreferer"
               href="tel: 0404068850"
               primary
             >
               Call Us
-            </Link>
-            <Link
+            </ExLink>
+            <ExLink
               primary
               href="mailto: contact@oliveandgrain.com.au"
               target="_blank"
               rel="noreferer"
             >
               Email Us
-            </Link>
-            <Link
+            </ExLink>
+            <ExLink
               href="https://g.page/theoliveandgrain?share"
               secondary
               target="_blank"
               rel="noreferer"
             >
               Get Directions
-            </Link>
+            </ExLink>
           </div>
         </Map>
       </MapGrid>

@@ -47,7 +47,7 @@ export const MiniCart = ({ visible, crossClick }) => {
                   </p>
                   <p></p>
                   <p>Qty: {item.quantity}</p>
-                  <p>${item.quantity * item.variant.price}</p>
+                  <p>${(item.quantity * item.variant.price).toFixed(2)}</p>
                 </div>
               </CartItem>
             ))}
