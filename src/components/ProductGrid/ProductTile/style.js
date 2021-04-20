@@ -9,6 +9,7 @@ export const TileWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
   text-align: center;
+  background: ${props => (props.isSearch ? '#fff' : '')};
 
   > *:not(:first-child) {
     text-align: center;

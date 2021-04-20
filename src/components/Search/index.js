@@ -42,7 +42,7 @@ export const Search = ({ visible, crossClick }) => {
       />
 
       <ProductContainer>
-        <ProductGrid products={searchProducts} />
+        <ProductGrid isSearch={true} products={searchProducts} />
       </ProductContainer>
     </SearchContainer>
   );
