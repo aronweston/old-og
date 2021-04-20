@@ -16,11 +16,13 @@ import queryString from 'query-string';
 import { Container } from '../../components/Global/styles';
 
 export const query = graphql`
-  query ProductQuery($shopifyId: String, $handle: String) {
+  query ProductQuery($shopifyId: String, $productHandle: String) {
     shopifyProduct(shopifyId: { eq: $shopifyId }) {
       ...ShopifyProductFields
     }
-    shopifyCollection(products: { elemMatch: { handle: { eq: $handle } } }) {
+    shopifyCollection(
+      products: { elemMatch: { handle: { eq: $productHandle } } }
+    ) {
       handle
       title
     }
@@ -35,7 +37,6 @@ const ProductPage = ({ data }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const { search, origin, pathname } = useLocation();
   const variantId = queryString.parse(search).variant;
-
   useEffect(() => {
     getProductById(staticProduct.shopifyId).then(res => {
       setDynamicProduct(res);
@@ -55,6 +56,7 @@ const ProductPage = ({ data }) => {
       { replace: true }
     );
   };
+
   return (
     <>
       <SEO

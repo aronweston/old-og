@@ -17,6 +17,10 @@ export const productFields = graphql`
         }
       }
     }
+    variants {
+      weight
+      weightUnit
+    }
   }
 `;
 

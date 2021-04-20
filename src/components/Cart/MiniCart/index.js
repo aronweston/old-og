@@ -29,6 +29,7 @@ export const MiniCart = ({ visible, crossClick }) => {
   };
 
   if (checkout) {
+    console.log(checkout);
     if (checkout?.lineItems.length > 0) {
       return (
         <MiniCartContainer visible={visible ? true : null}>
@@ -40,10 +41,10 @@ export const MiniCart = ({ visible, crossClick }) => {
                 <div>
                   <p>{item.title}</p>
                   <p>
-                    Platters
+                    {item.variant.selectedOptions[0].name}:{' '}
                     {item.variant.title === 'Default Title'
                       ? ''
-                      : ' / ' + item.variant.title}
+                      : item.variant.title}
                   </p>
                   <p></p>
                   <p>Qty: {item.quantity}</p>
@@ -55,12 +56,11 @@ export const MiniCart = ({ visible, crossClick }) => {
           <ButtonBlock>
             <div>
               <strong>Subtotal</strong>
-              <p>
-                $
-                {new Intl.NumberFormat({
-                  style: 'currency',
-                }).format(checkout.subtotalPrice)}
-              </p>
+              <p>${Number(checkout.subtotalPrice).toFixed(2)}</p>
+            </div>
+            <div>
+              <strong>GST (approx.)</strong>
+              <p>${Number(checkout.totalTax).toFixed(2)}</p>
             </div>
             <Link onClick={crossClick} to="/cart">
               Cart

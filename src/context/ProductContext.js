@@ -73,7 +73,7 @@ export function ProductContextProvider({ children }) {
         featuredProducts: featuredProducts(),
         allProducts: allProducts(),
         collections: allShopifyCollection.edges.map(({ node }) => node),
-        products: allShopifyProduct.edges.map(({ node }) => node),
+        products: [allShopifyProduct.edges.map(({ node }) => node)],
       }}
     >
       {children}

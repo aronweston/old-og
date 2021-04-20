@@ -13,6 +13,12 @@ export const CollectionImage = styled(BackgroundImage)`
 
   &:nth-child(even) {
     margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  &:last-child {
+    flex: 1 1 100%;
+    margin: 0;
   }
 
   &:after {

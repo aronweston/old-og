@@ -47,6 +47,12 @@ export const CartFooter = styled.div`
   > div {
     padding: 8px;
 
+    > strong,
+    span {
+      display: block;
+      padding-top: 5px;
+    }
+
     &:first-child {
       text-align: right;
     }

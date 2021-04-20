@@ -48,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
           shopifyId: product.shopifyId,
           productTitle: product.title,
           collectionHandle: node.handle,
+          productHandle: product.handle,
         },
       });
     });

@@ -15,12 +15,12 @@ import FooterList from './FooterList';
 import ProductContext from 'context/ProductContext';
 
 const pages = [
-  { handle: '/', title: 'Home' },
-  { handle: '/deli', title: 'The Deli' },
-  { handle: '/contact', title: 'Contact' },
-  { handle: '/cart', title: 'Checkout' },
-  { handle: '/terms', title: 'Terms & Conditions' },
-  { handle: '/privacy', title: 'Privacy Policy' },
+  { shopifyId: 1, handle: '/', title: 'Home' },
+  { shopifyId: 2, handle: '/deli', title: 'The Deli' },
+  { shopifyId: 3, handle: '/contact', title: 'Contact' },
+  { shopifyId: 4, handle: '/cart', title: 'Checkout' },
+  { shopifyId: 5, handle: '/terms', title: 'Terms & Conditions' },
+  { shopifyId: 6, handle: '/privacy', title: 'Privacy Policy' },
 ];
 
 const Footer = () => {
@@ -38,7 +38,11 @@ const Footer = () => {
             <FooterList title="Quick Links" data={pages} />
           </div>
           <div>
-            <FooterList title="Categories" data={collections} />
+            <FooterList
+              title="Categories"
+              isCollection={true}
+              data={collections}
+            />
           </div>
           <div>
             <FooterList title="Our Favourites" data={featuredProducts} />

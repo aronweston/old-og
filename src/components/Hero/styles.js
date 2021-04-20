@@ -63,8 +63,11 @@ export const Content = styled.div`
   margin: 1rem;
   margin-top: -500px;
   margin-bottom: -500px;
-  padding: 3rem;
-  border-radius: 5px;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
 
   > div {
     > * {

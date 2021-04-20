@@ -17,7 +17,6 @@ const Category = ({ data }) => {
   const category = data.shopifyCollection;
 
   const categoryProducts = allProducts.filter(product => {
-    console.log(product.shopifyId);
     if (category.shopifyId === product.collection.shopifyId) {
       return product;
     }
@@ -34,7 +33,6 @@ const Category = ({ data }) => {
       >
         <div>
           <h1>{category.title}</h1>
-          <p>{category.description}</p>
         </div>
       </BgImage>
       <Container>

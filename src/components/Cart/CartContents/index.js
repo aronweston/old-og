@@ -17,9 +17,11 @@ export const CartContents = () => {
   const { checkout, updateLineItem } = useContext(CartContext);
 
   const getPrice = price => {
-    return new Intl.NumberFormat({
+    const number = new Intl.NumberFormat({
       style: 'currency',
     }).format(price);
+
+    return Number(number).toFixed(2);
   };
 
   const handleAdjustQty = ({ quantity, variantId }) => {
@@ -27,6 +29,7 @@ export const CartContents = () => {
   };
 
   if (checkout) {
+    console.log(checkout);
     if (checkout?.lineItems.length > 0) {
       return (
         <CartContainer>
@@ -64,9 +67,11 @@ export const CartContents = () => {
           <CartFooter>
             <div>
               <strong>Total: </strong>
+              <strong>GST: </strong>
             </div>
             <div>
               <span>${getPrice(checkout.totalPrice)}</span>
+              <span>${checkout.totalTax}</span>
             </div>
           </CartFooter>
           <CheckoutFooter>

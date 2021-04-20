@@ -26,20 +26,24 @@ const List = styled.ul`
   }
 `;
 
-const FooterList = ({ title, data }) => {
+const FooterList = ({ title, isCollection, data }) => {
   return (
     <List>
       <strong>{title}</strong>
       {data?.map(link => (
-        <li>
-          <Link
-            to={
-              link.handle ||
-              `/deli/${link.collection.handle}/${link.product.handle}`
-            }
-          >
-            {link.title || link.product.title}
-          </Link>
+        <li key={link.shopifyId || link.product.shopifyId}>
+          {isCollection ? (
+            <Link to={`/deli/${link.handle}`}>{link.title}</Link>
+          ) : (
+            <Link
+              to={
+                link.handle ||
+                `/deli/${link.collection.handle}/${link.product.handle}`
+              }
+            >
+              {link.title || link.product.title}
+            </Link>
+          )}
         </li>
       ))}
     </List>
