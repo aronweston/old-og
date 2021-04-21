@@ -29,7 +29,6 @@ export const CartContents = () => {
   };
 
   if (checkout) {
-    console.log(checkout);
     if (checkout?.lineItems.length > 0) {
       return (
         <CartContainer>
@@ -67,11 +66,11 @@ export const CartContents = () => {
           <CartFooter>
             <div>
               <strong>Total: </strong>
-              <strong>GST: </strong>
+              <strong>GST (approx.): </strong>
             </div>
             <div>
               <span>${getPrice(checkout.totalPrice)}</span>
-              <span>${checkout.totalTax}</span>
+              <span>${Number(checkout.totalPrice / 10).toFixed(2)}</span>
             </div>
           </CartFooter>
           <CheckoutFooter>

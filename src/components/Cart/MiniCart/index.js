@@ -14,7 +14,7 @@ import {
 import CartContext from 'context/CartContext';
 
 export const MiniCart = ({ visible, crossClick }) => {
-  const { checkout } = useContext(CartContext);
+  const { checkout, removeLineItem } = useContext(CartContext);
 
   const CartHeaderContainer = () => {
     return (
@@ -44,7 +44,14 @@ export const MiniCart = ({ visible, crossClick }) => {
                       ? ''
                       : item.variant.title}
                   </p>
-                  <p></p>
+
+                  <button
+                    onClick={() => {
+                      removeLineItem(item.id);
+                    }}
+                  >
+                    Remove
+                  </button>
                   <p>Qty: {item.quantity}</p>
                   <p>${(item.quantity * item.variant.price).toFixed(2)}</p>
                 </div>
@@ -58,7 +65,7 @@ export const MiniCart = ({ visible, crossClick }) => {
             </div>
             <div>
               <strong>GST (approx.)</strong>
-              <p>${Number(checkout.totalTax).toFixed(2)}</p>
+              <p>${Number(checkout.subtotalPrice / 10).toFixed(2)}</p>
             </div>
             <Link onClick={crossClick} to="/cart">
               Cart
@@ -93,6 +100,6 @@ export const MiniCart = ({ visible, crossClick }) => {
       );
     }
   } else {
-    return null;
+    return '';
   }
 };
