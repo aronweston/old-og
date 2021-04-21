@@ -10,7 +10,7 @@ import { Container } from '../Global';
 
 import ProductContext from 'context/ProductContext';
 
-export const Search = ({ visible, crossClick }) => {
+export const Search = ({ visible, close }) => {
   const { allProducts } = useContext(ProductContext);
   const [search, setSearch] = useState('');
   const [searchProducts, setSearchProducts] = useState();
@@ -35,7 +35,7 @@ export const Search = ({ visible, crossClick }) => {
             ? `${searchProducts.length} Results for "${search}"`
             : 'Search'}
         </strong>
-        <button onClick={crossClick}>x</button>
+        <button onClick={close}>x</button>
       </TitleBlock>
       <SearchInput
         value={search}
@@ -44,7 +44,11 @@ export const Search = ({ visible, crossClick }) => {
       />
 
       <ProductContainer>
-        <ProductGrid isSearch={true} products={searchProducts} />
+        <ProductGrid
+          searchClose={close}
+          isSearch={true}
+          products={searchProducts}
+        />
       </ProductContainer>
     </SearchContainer>
   );

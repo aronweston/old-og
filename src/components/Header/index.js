@@ -72,10 +72,7 @@ const Header = () => {
 
       <Menu visible={menuVisible} crossClick={() => setMenuVisible(false)} />
 
-      <Search
-        visible={searchVisible}
-        crossClick={() => setSearchVisible(false)}
-      />
+      <Search visible={searchVisible} close={() => setSearchVisible(false)} />
     </HeaderWrapper>
   );
 };

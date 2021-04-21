@@ -7,6 +7,7 @@ const ProductTile = ({
   image,
   price,
   isSearch,
+  searchClose,
   collectionHandle,
   // collectionTitle,
   // description,
@@ -18,6 +19,7 @@ const ProductTile = ({
       <Title>{title}</Title>
       <Price>From ${parseInt(price).toFixed(2)}</Price>
       <Button
+        onClick={searchClose}
         secondary={isSearch ? false : true}
         primary={isSearch ? true : false}
         to={`/deli/${collectionHandle}/${productHandle}`}

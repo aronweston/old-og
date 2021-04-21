@@ -2,11 +2,12 @@ import React from 'react';
 import { ProductGridWrapper } from './styles';
 import ProductTile from './ProductTile';
 
-export const ProductGrid = ({ products, isSearch }) => {
+export const ProductGrid = ({ products, isSearch, searchClose }) => {
   return (
     <ProductGridWrapper>
       {products?.map(product => (
         <ProductTile
+          searchClose={searchClose}
           isSearch={isSearch}
           key={product.product.shopifyId}
           title={product.product.title}

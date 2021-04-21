@@ -151,16 +151,7 @@ export const EmptyCart = styled.div`
     line-height: 20px;
     font-weight: 300;
     width: 70%;
-  }
-
-  @media (min-width: 768px) {
-    > p {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    > p {
+    @media (min-width: 1024px) {
       width: 60%;
     }
   }

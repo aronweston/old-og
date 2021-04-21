@@ -16,7 +16,7 @@ const CategoryMenu = ({ collections, exit }) => {
       return (
         <CollectionList>
           {selectedCategory?.products.map(product => (
-            <li>
+            <li key={product.shopifyId}>
               <NavLink
                 onClick={() => exit()}
                 to={`/deli/${selectedCategory.handle}/${product.handle}`}
@@ -35,7 +35,7 @@ const CategoryMenu = ({ collections, exit }) => {
   return (
     <>
       {collections.map(collection => (
-        <>
+        <div key={collection.shopifyId}>
           <CollectionHeader>
             <Link onClick={() => exit()} to={`/deli/${collection.handle}`}>
               {collection.title}
@@ -57,7 +57,7 @@ const CategoryMenu = ({ collections, exit }) => {
               handle: collection.handle,
             }}
           />
-        </>
+        </div>
       ))}
     </>
   );

@@ -75,7 +75,11 @@ export const Message = styled.div`
   color: white;
 
   ${props =>
-    props.class === 'success' ? success : props.class === 'fail' ? fail : ''}
+    props.styleState === 'success'
+      ? success
+      : props.styleState === 'fail'
+      ? fail
+      : ''}
 `;
 
 const success = `

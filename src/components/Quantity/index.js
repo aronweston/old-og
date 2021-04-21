@@ -46,7 +46,7 @@ export const Quantity = ({ variantId, available }) => {
           </Button>
         </form>
       </QuantityWrapper>
-      <Message class={message.class}>{message && message.message}</Message>
+      <Message styleState={message.class}>{message && message.message}</Message>
     </>
   );
 };

@@ -87,11 +87,20 @@ export const EmptyContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
+  > * :not(:first-child, :last-child) {
+    margin: 0;
+    padding-bottom: 20px;
+  }
+
+  > h1 {
+    padding-top: 20px;
+  }
+
   > p {
     font-size: 16px;
     font-weight: 300;
     width: 50%;
-    line-height: 30px;
+    line-height: 20px;
   }
 
   @media (min-width: 768px) {
