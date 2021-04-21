@@ -1,7 +1,27 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-
 import ChevronDown from '../../../assets/svg/chevron-down.svg';
+
+export const CollectionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-primary);
+  font-size: 36px;
+  line-height: 36px;
+
+  > a {
+    color: white;
+    padding: 8px;
+  }
+`;
+
+export const CollectionList = styled.ul`
+  margin-bottom: 20px;
+  > li {
+    list-style: square;
+    color: white;
+  }
+`;
 
 export const NavLink = styled(Link)`
   padding: 8px;
@@ -21,27 +41,6 @@ export const NavLink = styled(Link)`
 
   @media screen and (max-height: 450px) {
     font-size: 20px;
-  }
-`;
-
-export const CollectionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-primary);
-  font-size: 36px;
-  line-height: 36px;
-
-  > a > strong {
-    color: white;
-    padding: 8px;
-  }
-`;
-
-export const CollectionList = styled.ul`
-  margin: 0;
-  margin-bottom: 20px;
-  > li {
-    list-style: none;
   }
 `;
 

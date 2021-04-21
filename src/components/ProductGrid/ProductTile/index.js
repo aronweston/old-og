@@ -1,5 +1,5 @@
 import React from 'react';
-import { TileWrapper, Title, Description, Price, Button } from './style';
+import { TileWrapper, Title, Price, Button } from './style';
 import Image from 'gatsby-image';
 
 const ProductTile = ({

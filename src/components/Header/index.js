@@ -10,7 +10,7 @@ import {
   SearchIcon,
   IconContainer,
 } from './styles';
-import { MiniCart, Cart, Menu, Search, SubHeader } from 'components';
+import { MiniCart, Cart, Menu, Search } from 'components';
 
 const Header = () => {
   const [cartVisible, setCartVisible] = useState(false);
@@ -42,7 +42,6 @@ const Header = () => {
 
   return (
     <HeaderWrapper search={searchVisible ? true : null}>
-      {/* <SubHeader /> */}
       <HeaderContainer>
         <NavLink to="/">
           <MobileLogo />

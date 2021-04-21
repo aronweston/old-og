@@ -3,7 +3,7 @@ import { CrumbLink } from './styles';
 import { useLocation } from '@reach/router';
 
 export const Breadcrumb = ({ cHandle, cTitle, product }) => {
-  const { search, origin, pathname } = useLocation();
+  const { search, pathname } = useLocation();
   return (
     <>
       <CrumbLink to="/deli">The Deli / </CrumbLink>

@@ -8,7 +8,7 @@ export const SearchContainer = styled.div`
   display: ${props => (props.visible ? 'flex' : 'none')};
   overflow: hidden;
   flex-direction: column;
-  z-index: 90000;
+  z-index: 9000;
   background: var(--secondary);
   transition: 0.2s all;
 `;

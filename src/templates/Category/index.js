@@ -16,11 +16,9 @@ const Category = ({ data }) => {
   const { allProducts } = useContext(ProductContext);
   const category = data.shopifyCollection;
 
-  const categoryProducts = allProducts.filter(product => {
-    if (category.shopifyId === product.collection.shopifyId) {
-      return product;
-    }
-  });
+  const categoryProducts = allProducts.filter(
+    product => category.shopifyId === product.collection.shopifyId
+  );
 
   return (
     <>
@@ -31,9 +29,11 @@ const Category = ({ data }) => {
         overlayColor="#04040454"
         height="300px"
       >
-        <div>
-          <h1>{category.title}</h1>
-        </div>
+        <Container>
+          <div>
+            <h1>{category.title}</h1>
+          </div>
+        </Container>
       </BgImage>
       <Container>
         <GridContainer>

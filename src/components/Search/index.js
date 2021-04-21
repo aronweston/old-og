@@ -6,6 +6,8 @@ import {
   ProductContainer,
 } from './styles';
 import { ProductGrid } from 'components';
+import { Container } from '../Global';
+
 import ProductContext from 'context/ProductContext';
 
 export const Search = ({ visible, crossClick }) => {
@@ -30,7 +32,7 @@ export const Search = ({ visible, crossClick }) => {
       <TitleBlock>
         <strong>
           {search.length > 0
-            ? `${searchProducts.length} Results for ` + `"${search}"`
+            ? `${searchProducts.length} Results for "${search}"`
             : 'Search'}
         </strong>
         <button onClick={crossClick}>x</button>

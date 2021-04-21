@@ -16,7 +16,6 @@ import CartContext from 'context/CartContext';
 export const MiniCart = ({ visible, crossClick }) => {
   const { checkout } = useContext(CartContext);
 
-  // visible = true;
   const CartHeaderContainer = () => {
     return (
       <CartHeader>
@@ -29,7 +28,6 @@ export const MiniCart = ({ visible, crossClick }) => {
   };
 
   if (checkout) {
-    console.log(checkout);
     if (checkout?.lineItems.length > 0) {
       return (
         <MiniCartContainer visible={visible ? true : null}>

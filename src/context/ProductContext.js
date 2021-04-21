@@ -47,20 +47,24 @@ export function ProductContextProvider({ children }) {
 
   const featuredProducts = () => {
     let featuredProducts = [];
-    allShopifyCollection.edges.map(({ node }) => {
-      node.products.map(product => {
+    allShopifyCollection.edges.forEach(({ node }) => {
+      node.products.forEach(product => {
         if (product.tags.includes('featured')) {
           featuredProducts.push({ product, collection: node });
         }
       });
     });
-    if (featuredProducts.length > 0) return featuredProducts;
+    if (featuredProducts.length > 0) {
+      return featuredProducts;
+    } else {
+      return [];
+    }
   };
 
   const allProducts = () => {
     let allProducts = [];
-    allShopifyCollection.edges.map(({ node: collection }) => {
-      collection.products.map(product => {
+    allShopifyCollection.edges.forEach(({ node: collection }) => {
+      collection.products.forEach(product => {
         allProducts.push({ product, collection });
       });
     });

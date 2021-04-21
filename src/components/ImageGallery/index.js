@@ -24,14 +24,15 @@ export const ImageGallery = ({ selectedVariantImageId, images }) => {
         <Image fluid={activeImageThumbnail.localFile.childImageSharp.fluid} />
       </div>
       <div>
-        {images.map(image => (
-          <ImageThumbnail
-            key={image.id}
-            onClick={handleClick}
-            isActive={activeImageThumbnail.id === image.id}
-            image={image}
-          />
-        ))}
+        {images.length > 1 &&
+          images.map(image => (
+            <ImageThumbnail
+              key={image.id}
+              onClick={handleClick}
+              isActive={activeImageThumbnail.id === image.id}
+              image={image}
+            />
+          ))}
       </div>
     </ImageGalleryWrapper>
   );

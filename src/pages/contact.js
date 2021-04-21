@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Link, Button, ExLink } from '../components/Global';
+import { Button, ExLink } from '../components/Global';
 import { SEO } from 'components';
 import MapBkg from '../images/mapbkg.jpg';
 

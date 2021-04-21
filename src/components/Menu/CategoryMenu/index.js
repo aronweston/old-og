@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  //   ChevronDown,
+  ChevronDown,
   CollectionHeader,
   CollectionList,
   NavLink,
@@ -8,26 +8,56 @@ import {
 import { Link } from 'gatsby';
 
 const CategoryMenu = ({ collections, exit }) => {
-  return (
-    <>
-      {collections.map(collection => (
-        <CollectionList key={collection.shopifyId}>
-          <CollectionHeader>
-            <Link to={`/deli/${collection.handle}`}>
-              <strong onClick={() => exit()}>{collection.title}</strong>
-            </Link>
-          </CollectionHeader>
-          {collection.products.map(product => (
-            <li key={product.shopifyId}>
+  // const [isVisible, setIsVisible] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+
+  const CategoryLinks = ({ collection: { title, handle } }) => {
+    if (selectedCategory?.title === title) {
+      return (
+        <CollectionList>
+          {selectedCategory?.products.map(product => (
+            <li>
               <NavLink
                 onClick={() => exit()}
-                to={`/deli/${collection.handle}/${product.handle}`}
+                to={`/deli/${selectedCategory.handle}/${product.handle}`}
               >
                 {product.title}
               </NavLink>
             </li>
           ))}
         </CollectionList>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  return (
+    <>
+      {collections.map(collection => (
+        <>
+          <CollectionHeader>
+            <Link onClick={() => exit()} to={`/deli/${collection.handle}`}>
+              {collection.title}
+            </Link>
+            <button
+              onClick={() =>
+                setSelectedCategory(
+                  collections.find(x => x.shopifyId === collection.shopifyId)
+                )
+              }
+            >
+              <ChevronDown />
+            </button>
+          </CollectionHeader>
+
+          <CategoryLinks
+            collection={{
+              title: collection.title,
+              handle: collection.handle,
+            }}
+          />
+        </>
       ))}
     </>
   );

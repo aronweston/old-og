@@ -12,6 +12,7 @@ import CategoryMenu from './CategoryMenu';
 
 export const Menu = ({ visible, crossClick }) => {
   const { collections } = useContext(ProductContext);
+
   return (
     <SideMenuContainer visible={visible ? true : null}>
       <CartHeader>
