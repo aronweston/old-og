@@ -25,6 +25,10 @@ export const Grid = styled.section`
       order: 1;
     }
   }
+
+  @media (min-width: 1500px) {
+    margin: 80px;
+  }
 `;
 
 export const SelectWrapper = styled.div`

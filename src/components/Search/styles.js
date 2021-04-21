@@ -3,14 +3,21 @@ import styled from 'styled-components';
 export const SearchContainer = styled.div`
   position: fixed;
   height: 100%;
-  padding: 0px 15px;
   width: 100%;
+  padding: 0px 15px;
+
   display: ${props => (props.visible ? 'flex' : 'none')};
   overflow: hidden;
   flex-direction: column;
   z-index: 9000;
   background: var(--secondary);
   transition: 0.2s all;
+  > div {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const TitleBlock = styled.div`

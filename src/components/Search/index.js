@@ -29,27 +29,29 @@ export const Search = ({ visible, close }) => {
 
   return (
     <SearchContainer visible={visible ? true : null}>
-      <TitleBlock>
-        <strong>
-          {search.length > 0
-            ? `${searchProducts.length} Results for "${search}"`
-            : 'Search'}
-        </strong>
-        <button onClick={close}>x</button>
-      </TitleBlock>
-      <SearchInput
-        value={search}
-        placeholder="Search for your product"
-        onChange={e => handleSearch(e.target.value)}
-      />
-
-      <ProductContainer>
-        <ProductGrid
-          searchClose={close}
-          isSearch={true}
-          products={searchProducts}
+      <Container>
+        <TitleBlock>
+          <strong>
+            {search.length > 0
+              ? `${searchProducts.length} Results for "${search}"`
+              : 'Search'}
+          </strong>
+          <button onClick={close}>x</button>
+        </TitleBlock>
+        <SearchInput
+          value={search}
+          placeholder="Search for your product"
+          onChange={e => handleSearch(e.target.value)}
         />
-      </ProductContainer>
+
+        <ProductContainer>
+          <ProductGrid
+            searchClose={close}
+            isSearch={true}
+            products={searchProducts}
+          />
+        </ProductContainer>
+      </Container>
     </SearchContainer>
   );
 };

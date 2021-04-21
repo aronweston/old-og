@@ -76,7 +76,4 @@ export const GlobalStyle = createGlobalStyle`
       list-style: disc;
     }
   }
-
-
-
 `;
