@@ -12,7 +12,10 @@ import {
 } from './styles';
 import { MiniCart, Cart, Menu, Search } from 'components';
 
+import { useLocation } from '@reach/router';
+
 const Header = () => {
+  const location = useLocation();
   const [cartVisible, setCartVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -43,10 +46,10 @@ const Header = () => {
   return (
     <HeaderWrapper search={searchVisible ? true : null}>
       <HeaderContainer>
-        <NavLink to="/">
+        <NavLink location={location.pathname} to="/">
           <MobileLogo />
         </NavLink>
-        <IconContainer>
+        <IconContainer location={location.pathname}>
           <Icon onClick={closeAll}>
             <NavLink to="/contact">
               <Phone />
@@ -61,7 +64,7 @@ const Header = () => {
             <SearchIcon />
           </Icon>
 
-          <Cart onClick={showCart} />
+          <Cart location={location.pathname} onClick={showCart} />
         </IconContainer>
       </HeaderContainer>
 

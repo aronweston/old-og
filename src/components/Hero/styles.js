@@ -5,13 +5,12 @@ import Right from '../../images/platter-right.png';
 export const HeroContainer = styled.section`
   height: 100vh;
   width: 100%;
-  margin-top: 80px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 
   @media (max-width: 425px) {
-    border: 2px solid black;
+    border: none;
     background-color: var(--secondary);
   }
 `;

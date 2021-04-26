@@ -2,9 +2,12 @@ import React from 'react';
 import { HeroContainer, BackgroundImage, Content } from './styles';
 import { Link } from '../Global';
 
+import { useLocation } from '@reach/router';
+
 export const Hero = () => {
+  const location = useLocation();
   return (
-    <HeroContainer>
+    <HeroContainer location={location.pathname}>
       <BackgroundImage>
         <div></div>
         <Content>

@@ -1,13 +1,12 @@
 import styled from 'styled-components';
+import { Container as ContainerBase } from '../Global';
 
-export const SearchContainer = styled.div`
+export const SearchWrapper = styled.div`
   position: fixed;
-  height: 100%;
   width: 100%;
-  padding: 0px 15px;
-
+  height: 100%;
+  margin-top: -1px;
   display: ${props => (props.visible ? 'flex' : 'none')};
-  overflow: hidden;
   flex-direction: column;
   z-index: 9000;
   background: var(--secondary);
@@ -39,7 +38,10 @@ export const SearchInput = styled.input`
   padding: 1rem;
 `;
 
-export const ProductContainer = styled.div`
-  overflow-x: scroll;
+export const HeaderContainer = styled(ContainerBase)``;
+
+export const ScrollContainer = styled(ContainerBase)`
+  max-height: 100vh;
+  overflow: auto;
   padding-bottom: 100px;
 `;

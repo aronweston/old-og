@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import {
-  SearchContainer,
+  SearchWrapper,
   TitleBlock,
   SearchInput,
-  ProductContainer,
+  ScrollContainer,
+  HeaderContainer,
 } from './styles';
 import { ProductGrid } from 'components';
-import { Container } from '../Global';
 
 import ProductContext from 'context/ProductContext';
 
@@ -28,8 +28,8 @@ export const Search = ({ visible, close }) => {
   };
 
   return (
-    <SearchContainer visible={visible ? true : null}>
-      <Container>
+    <SearchWrapper visible={visible ? true : null}>
+      <HeaderContainer>
         <TitleBlock>
           <strong>
             {search.length > 0
@@ -43,15 +43,14 @@ export const Search = ({ visible, close }) => {
           placeholder="Search for your product"
           onChange={e => handleSearch(e.target.value)}
         />
-
-        <ProductContainer>
-          <ProductGrid
-            searchClose={close}
-            isSearch={true}
-            products={searchProducts}
-          />
-        </ProductContainer>
-      </Container>
-    </SearchContainer>
+      </HeaderContainer>
+      <ScrollContainer>
+        <ProductGrid
+          searchClose={close}
+          isSearch={true}
+          products={searchProducts}
+        />
+      </ScrollContainer>
+    </SearchWrapper>
   );
 };
