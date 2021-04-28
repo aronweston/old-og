@@ -81,7 +81,9 @@ const Footer = () => {
         <span>Copyright © {new Date().getFullYear()} </span>
         <span>Olive Grain, All rights reserved</span>
         <p>
-          Website by <strong>Aron Weston</strong>
+          <a href="https://aronweston.com" target="_blank" rel="noreferrer">
+            Website by <strong>Aron Weston</strong>
+          </a>
         </p>
       </Copyright>
     </FooterWrapper>
