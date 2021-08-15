@@ -43,18 +43,19 @@ export const TileContent = styled.div`
   width: 100%;
   height: 100%;
   text-decoration: none;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   text-align: center;
   flex-direction: column;
   border-radius: 4px;
 `;
 
-export const Title = styled.p`
+export const Title = styled.h3`
   padding: 5px 10px;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
   display: block;
-  font-size: 40px;
+  font-size: 3rem;
   color: white;
   border-radius: 10px;
   font-family: var(--font-primary);
+  font-weight: bolder;
 `;

@@ -62,10 +62,10 @@ export const Logo = styled(LogoBase)`
 `;
 
 export const Copyright = styled.div`
-  border-top: 5px solid var(--secondary);
   color: white;
   font-size: 12px;
   padding: 1rem;
+  text-align: center;
 `;
 
 export const FooterGrid = styled(Container)`
@@ -82,7 +82,7 @@ export const FooterGrid = styled(Container)`
     &:first-child {
       margin: 0 auto;
       display: flex;
-      justify-content: ;
+      justify-content: center;
       align-items: center;
       padding: 1.5rem 0;
     }
@@ -101,7 +101,6 @@ export const FooterGrid = styled(Container)`
 `;
 
 export const FooterWrapper = styled.footer`
-  border: 5px solid var(--secondary);
   text-align: center;
   width: 100%;
   background: var(--primary);

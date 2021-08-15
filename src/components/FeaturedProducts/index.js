@@ -7,7 +7,7 @@ export const FeaturedProducts = () => {
   const { featuredProducts } = useContext(ProductContext);
   return (
     <FeaturedWrapper>
-      <h1>Our Favourites</h1>
+      <span>Our Favourites</span>
       <ProductGrid products={featuredProducts} />
     </FeaturedWrapper>
   );
