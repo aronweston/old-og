@@ -191,7 +191,7 @@ const ContactPage = () => {
               <strong>Email: </strong>contact@oliveandgrain.com.au
             </p>
             <p>
-              <strong>Phone: </strong>0400 000 000
+              <strong>Phone: </strong>(02) 9314 1381
             </p>
           </div>
           <div>
@@ -215,7 +215,7 @@ const ContactPage = () => {
             <ExLink
               target="_blank"
               rel="noreferer"
-              href="tel: 0404068850"
+              href="tel: (02) 9314 1381"
               primary
             >
               Call Us
