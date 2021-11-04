@@ -9,13 +9,7 @@ export const productFields = graphql`
     tags
     images {
       id
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 910) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+      originalSrc
     }
     variants {
       weight
@@ -32,13 +26,7 @@ export const collectionFields = graphql`
     description
     # tags
     image {
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 910) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+      src
     }
   }
 `;
