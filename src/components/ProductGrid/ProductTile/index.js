@@ -15,7 +15,7 @@ const ProductTile = ({
 }) => {
   return (
     <TileWrapper isSearch={isSearch}>
-      <Image fluid={image} />
+      <img src={image} />
       <Title>{title}</Title>
       <Price>From ${parseInt(price).toFixed(2)}</Price>
       <Button

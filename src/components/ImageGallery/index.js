@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'gatsby-image';
-import { ImageGalleryWrapper } from './styles';
-import { ImageThumbnail } from './ImageThumbnail';
+import { ImageGalleryWrapper, ImageThumbnailWrapper } from './styles';
+
+function ImageThumbnail({ isActive, onClick, image }) {
+  return (
+    <ImageThumbnailWrapper onClick={() => onClick(image)} isActive={isActive}>
+      <img src={image.originalSrc} />
+    </ImageThumbnailWrapper>
+  );
+}
 
 export const ImageGallery = ({ selectedVariantImageId, images }) => {
   const [activeImageThumbnail, setActiveImageThumbnail] = useState(
@@ -21,7 +28,7 @@ export const ImageGallery = ({ selectedVariantImageId, images }) => {
   return (
     <ImageGalleryWrapper>
       <div>
-        <Image fluid={activeImageThumbnail.localFile.childImageSharp.fluid} />
+        <img src={activeImageThumbnail.originalSrc} />
       </div>
       <div>
         {images.length > 1 &&
