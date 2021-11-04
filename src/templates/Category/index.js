@@ -1,8 +1,24 @@
 import React, { useContext } from 'react';
-import { GridContainer, BgImage } from './styles';
 import { Container } from '../../components/Global/styles';
 import { SEO, ProductGrid } from 'components';
 import ProductContext from 'context/ProductContext';
+import styled from 'styled-components';
+
+const BgImage = styled.div`
+  position: relative;
+  width: 100%;
+  background-image: ${props => props.src && `url('${props.src}')`};
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: ${({ height }) => height};
+  z-index: -1;
+  color: white;
+
+  @media screen and (max-width: 600px) {
+    height: ${({ mobileHeight }) => mobileHeight};
+  }
+`;
 
 export const query = graphql`
   query CollectionQuery($handle: String) {
@@ -20,15 +36,11 @@ const Category = ({ data }) => {
     product => category.shopifyId === product.collection.shopifyId
   );
 
+  console.log(category);
   return (
     <>
       <SEO title={category.title} description={category.description} />
-      <BgImage
-        title={category.title}
-        fluid={category.image?.localFile.childImageSharp.fluid}
-        overlayColor="#04040454"
-        height="300px"
-      >
+      <BgImage src={category.image.src} height="300px">
         <Container>
           <div>
             <h1>{category.title}</h1>
@@ -36,9 +48,7 @@ const Category = ({ data }) => {
         </Container>
       </BgImage>
       <Container>
-        <GridContainer>
-          <ProductGrid products={categoryProducts} />
-        </GridContainer>
+        <ProductGrid products={categoryProducts} />
       </Container>
     </>
   );
