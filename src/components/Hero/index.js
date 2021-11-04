@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeroContainer, BackgroundImage, Content } from './styles';
 import { Link } from '../Global';
-
 import { useLocation } from '@reach/router';
 
 export const Hero = () => {
